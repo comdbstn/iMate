@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Cpu, Settings, LineChart, ArrowRight } from 'lucide-react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 const StepCard = ({ step, index }: { step: any; index: number }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -29,6 +30,17 @@ const StepCard = ({ step, index }: { step: any; index: number }) => {
 };
 
 export const ProcessSection = () => {
+  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ 
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  });
+  const [stepsRef, areStepsVisible] = useIntersectionObserver<HTMLDivElement>({ 
+    threshold: 0.3 
+  });
+  const [buttonRef, isButtonVisible] = useIntersectionObserver<HTMLDivElement>({ 
+    threshold: 0.5 
+  });
+
   const steps = [
     {
       id: 'select',
@@ -55,9 +67,13 @@ export const ProcessSection = () => {
   };
 
   return (
-    <section id="process" className="py-20 bg-white">
+    <section 
+      ref={sectionRef} 
+      id="process" 
+      className={`py-20 bg-white section-animate from-left ${isSectionVisible ? 'appear' : ''}`}
+    >
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+        <div className={`text-center max-w-3xl mx-auto mb-16 section-animate scale-in ${isSectionVisible ? 'appear' : ''}`}>
           <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-medium text-sm mb-4">
             시작하기
           </span>
@@ -69,7 +85,10 @@ export const ProcessSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between max-w-4xl mx-auto stagger-show">
+        <div 
+          ref={stepsRef} 
+          className={`flex flex-col md:flex-row justify-between max-w-4xl mx-auto section-animate reveal-children ${areStepsVisible ? 'appear' : ''}`}
+        >
           {steps.map((step, index) => (
             <React.Fragment key={step.id}>
               <StepCard step={step} index={index} />
@@ -82,7 +101,11 @@ export const ProcessSection = () => {
           ))}
         </div>
         
-        <div className="mt-16 text-center">
+        <div 
+          ref={buttonRef} 
+          className={`mt-16 text-center section-animate from-bottom ${isButtonVisible ? 'appear' : ''}`}
+          style={{ transitionDelay: '0.3s' }}
+        >
           <button 
             onClick={handleStartNow}
             className="px-8 py-4 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition-all transform hover:scale-105 duration-200 shadow-lg animate-float"

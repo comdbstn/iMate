@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 const PricingCard = ({ plan, onSelect }: { plan: any; onSelect: () => void }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -52,6 +53,14 @@ const PricingCard = ({ plan, onSelect }: { plan: any; onSelect: () => void }) =>
 
 export const PricingSection = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ 
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  });
+  const [cardsRef, areCardsVisible] = useIntersectionObserver<HTMLDivElement>({ 
+    threshold: 0.3,
+    rootMargin: '0px 0px -150px 0px'
+  });
   
   const plans = [
     {
@@ -110,9 +119,13 @@ export const PricingSection = () => {
   };
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-indigo-700 to-purple-700">
+    <section 
+      ref={sectionRef} 
+      id="pricing" 
+      className={`py-20 bg-gradient-to-br from-indigo-700 to-purple-700 section-animate from-bottom ${isSectionVisible ? 'appear' : ''}`}
+    >
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className={`text-center max-w-3xl mx-auto mb-16 section-animate fade-in ${isSectionVisible ? 'appear' : ''}`}>
           <span className="inline-block px-4 py-2 bg-white text-indigo-800 rounded-full font-medium text-sm mb-4">
             요금제
           </span>
@@ -124,7 +137,10 @@ export const PricingSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div 
+          ref={cardsRef} 
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto section-animate reveal-grid ${areCardsVisible ? 'appear' : ''}`}
+        >
           {plans.map((plan) => (
             <PricingCard 
               key={plan.id} 
@@ -134,7 +150,7 @@ export const PricingSection = () => {
           ))}
         </div>
         
-        <div className="mt-12 text-center text-white">
+        <div className={`mt-12 text-center text-white section-animate fade-in ${isSectionVisible ? 'appear delay-500' : ''}`} style={{ transitionDelay: '0.5s' }}>
           모든 요금제는 14일 무료 체험을 제공합니다. 신용카드 정보 없이 지금 바로 시작해보세요.
         </div>
       </div>

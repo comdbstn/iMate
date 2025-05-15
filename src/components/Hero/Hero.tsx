@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Bot, Sparkles } from 'lucide-react';
 import Button from '../common/Button';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 export const Hero = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [contentRef, isContentVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
   
   useEffect(() => {
     const handleScroll = () => {
@@ -39,8 +41,8 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 md:px-8 relative z-10 h-screen flex items-center">
-        <div className="max-w-4xl mx-auto text-center">
+      <div ref={contentRef} className="container mx-auto px-4 md:px-8 relative z-10 h-screen flex items-center">
+        <div className={`max-w-4xl mx-auto text-center section-animate fade-in ${isContentVisible ? 'appear' : ''}`}>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white mb-8 animate-fade-in-up hover:bg-white/20 transition-all cursor-pointer">
             <Bot className="h-4 w-4 animate-pulse" />
             <span>새로운 AI 팀원을 소개합니다</span>
