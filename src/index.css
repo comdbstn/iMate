@@ -37,6 +37,17 @@
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -47,6 +58,14 @@
 
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
 }
 
 .animation-delay-200 {
@@ -95,3 +114,24 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-purple-500;
 }
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+  transition: transform 0.3s ease;
+}
+
+.stagger-show > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.stagger-show > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-show > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-show > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-show > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-show > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-show > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-show > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-show > *:nth-child(8) { animation-delay: 0.8s; }
+.stagger-show > *:nth-child(9) { animation-delay: 0.9s; }

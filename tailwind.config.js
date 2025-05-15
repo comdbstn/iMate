@@ -7,6 +7,8 @@ export default {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'float': 'float 6s ease-in-out infinite',
         'scroll': 'scroll 1.5s ease-in-out infinite',
+        'spin-slow': 'spin 6s linear infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         'fade-in-up': {

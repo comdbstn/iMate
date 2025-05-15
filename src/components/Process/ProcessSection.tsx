@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, Cpu, Settings, LineChart, ArrowRight } from 'lucide-react';
 
-const StepCard = ({ step }: { step: any }) => (
-  <div className="flex flex-col items-center text-center md:w-1/3 mb-10 md:mb-0">
-    <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6">
-      {step.icon}
+const StepCard = ({ step, index }: { step: any; index: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <div 
+      className={`flex flex-col items-center text-center md:w-1/3 mb-10 md:mb-0 transition-all duration-300 ${
+        isHovered ? 'transform scale-105' : ''
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ animationDelay: `${index * 0.2}s` }}
+    >
+      <div className={`w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+        isHovered ? 'animate-pulse' : ''
+      }`}>
+        {step.icon}
+      </div>
+      <h3 className="text-xl font-bold text-gray-900 mb-3">
+        {step.title}
+      </h3>
+      <p className="text-gray-600">
+        {step.description}
+      </p>
     </div>
-    <h3 className="text-xl font-bold text-gray-900 mb-3">
-      {step.title}
-    </h3>
-    <p className="text-gray-600">
-      {step.description}
-    </p>
-  </div>
-);
+  );
+};
 
 export const ProcessSection = () => {
   const steps = [
@@ -25,7 +38,7 @@ export const ProcessSection = () => {
     },
     {
       id: 'connect',
-      icon: <Settings className="h-8 w-8 text-white" />,
+      icon: <Settings className="h-8 w-8 text-white animate-spin-slow" />,
       title: '간단한 연동',
       description: '클릭 몇 번으로 현재 사용 중인 시스템과 연동하세요. 기술 지식이 없어도 쉽게 설정할 수 있습니다.'
     },
@@ -37,10 +50,14 @@ export const ProcessSection = () => {
     },
   ];
 
+  const handleStartNow = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section id="process" className="py-20">
+    <section id="process" className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
           <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-medium text-sm mb-4">
             시작하기
           </span>
@@ -52,13 +69,13 @@ export const ProcessSection = () => {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between max-w-4xl mx-auto stagger-show">
           {steps.map((step, index) => (
             <React.Fragment key={step.id}>
-              <StepCard step={step} />
+              <StepCard step={step} index={index} />
               {index < steps.length - 1 && (
                 <div className="hidden md:flex items-center justify-center md:w-auto">
-                  <ArrowRight className="h-8 w-8 text-gray-300" />
+                  <ArrowRight className="h-8 w-8 text-gray-300 animate-pulse" />
                 </div>
               )}
             </React.Fragment>
@@ -67,7 +84,8 @@ export const ProcessSection = () => {
         
         <div className="mt-16 text-center">
           <button 
-            className="px-8 py-4 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition-all transform hover:scale-105 duration-200 shadow-lg"
+            onClick={handleStartNow}
+            className="px-8 py-4 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition-all transform hover:scale-105 duration-200 shadow-lg animate-float"
             aria-label="Start Now"
           >
             지금 바로 시작하기
