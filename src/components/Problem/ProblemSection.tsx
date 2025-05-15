@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageCircle, FileText, Calendar, Megaphone, Users, Sparkles, Bot } from 'lucide-react';
-import Button from '../../common/Button';
+import Button from '../common/Button';
 
 const ProblemCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
   <div className="bg-white/5 backdrop-blur-lg p-6 rounded-xl border border-white/10 transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1">
