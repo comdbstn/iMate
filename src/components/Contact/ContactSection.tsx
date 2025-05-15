@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../common/Input';
-import Select from './Select';
-import Button from './Button';
+import Select from '../common/Select';
+import Button from '../common/Button';
 
 const FeatureItem = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-center text-white">
