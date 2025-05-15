@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Search, Calendar, PenTool, FileText, Terminal, ChevronRight } from 'lucide-react';
-import Button from '../../common/Button';
+import Button from '../common/Button';
 
 export const CharactersSection = () => {
   const [activeTab, setActiveTab] = useState<string>('all');
