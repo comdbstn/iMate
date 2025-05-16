@@ -80,7 +80,7 @@ export const CharactersSection = () => {
         <p className="text-white/90 mb-4">{character.role}</p>
       </div>
       <div className="p-6">
-        <div className="aspect-[3/2] w-full rounded-lg overflow-hidden mb-6 bg-gray-50 flex items-center justify-center">
+        <div className="aspect-[2/3] w-full rounded-lg overflow-hidden mb-6 bg-gray-50 flex items-center justify-center">
           <img
             src={`/images/ai-${character.id}.webp`}
             alt={`${character.name} 캐릭터 이미지`}
