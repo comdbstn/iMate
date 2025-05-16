@@ -48,7 +48,7 @@ export const CharactersSection = () => {
     },
     {
       id: 'taeo',
-      name: '태오',
+      name: '윤구',
       role: '반복 업무 자동화',
       icon: <Terminal className="h-8 w-8 text-white" />,
       color: 'from-cyan-500 to-cyan-600',
@@ -139,7 +139,7 @@ export const CharactersSection = () => {
               이 외에도 원하는 AI 팀원을 맞춤 제작해 드립니다
             </h3>
             <p className="text-gray-600 mb-6">
-              지유, 하린, 수아, 준호, 소연, 태오는 시작일 뿐입니다. 당신의 비즈니스에 필요한 특별한 AI 팀원이 있다면, 
+              지유, 하린, 수아, 준호, 소연, 윤구는 시작일 뿐입니다. 당신의 비즈니스에 필요한 특별한 AI 팀원이 있다면, 
               맞춤형으로 제작해 드립니다. 업종별 특화 기능, 브랜드 톤앤매너 반영, 내부 시스템 연동까지 - 
               상상하는 모든 AI 팀원을 현실로 만들어 드립니다.
             </p>
