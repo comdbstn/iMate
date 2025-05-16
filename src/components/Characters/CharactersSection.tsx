@@ -80,10 +80,14 @@ export const CharactersSection = () => {
         <p className="text-white/90 mb-4">{character.role}</p>
       </div>
       <div className="p-6">
-        <div className="h-48 bg-gray-50 rounded-lg mb-6 flex items-center justify-center">
-          <p className="text-gray-400 text-sm text-center">
-            {character.name} 캐릭터 이미지가<br />들어갈 자리입니다
-          </p>
+        <div className="aspect-[3/2] w-full rounded-lg overflow-hidden mb-6 bg-gray-50 flex items-center justify-center">
+          <img
+            src={`/images/ai-${character.id}.webp`}
+            alt={`${character.name} 캐릭터 이미지`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            onError={e => { e.currentTarget.style.display = 'none'; }}
+          />
         </div>
         <p className="text-gray-600 mb-6">{character.description}</p>
         <a 
