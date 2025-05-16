@@ -6,7 +6,7 @@ interface UseIntersectionObserverProps {
 }
 
 export const useIntersectionObserver = <T extends Element>({
-  threshold = 0.1,
+  threshold = 0,
   rootMargin = '0px',
 }: UseIntersectionObserverProps = {}): [RefObject<T>, boolean] => {
   const ref = useRef<T>(null);

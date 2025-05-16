@@ -66,11 +66,11 @@ export const ProblemSection = () => {
           
           <div className="relative">
             <div className="bg-gradient-to-br from-purple-500/5 to-blue-500/5 backdrop-blur-lg p-8 rounded-2xl border border-white/10 relative z-10 transform hover:scale-105 transition-transform duration-300">
-              <div className="aspect-square mb-6 rounded-xl overflow-hidden">
+              <div className="aspect-square mb-6 rounded-xl overflow-hidden shadow-xl shadow-purple-500/20">
                 <img 
-                  src="/path/to/image.webp"
-                  alt="AI Assistant Jiyu"
-                  className="relative rounded-xl w-full h-[400px] object-cover transform -rotate-1 group-hover:rotate-0 transition-transform"
+                  src="/images/jiyu.webp"
+                  alt="AI 어시스턴트 지유"
+                  className="relative rounded-xl w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
               </div>
