@@ -45,10 +45,10 @@ export const ProblemSection = () => {
 
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                <span className="text-white">반복작업에 지치셨나요?</span>
+                <span className="text-white">안녕하세요</span>
                 <br />
-                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
-                  사람보다 빠르게, 정확하게 작업해드리겠습니다!
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 text-transparent bg-clip-text">
+                  당신의 AI 에이전트, 지유에요
                 </span>
               </h2>
               <p className="text-xl text-gray-400">

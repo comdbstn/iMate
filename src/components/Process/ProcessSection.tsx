@@ -14,15 +14,15 @@ const StepCard = ({ step, index }: { step: any; index: number }) => {
       onMouseLeave={() => setIsHovered(false)}
       style={{ animationDelay: `${index * 0.2}s` }}
     >
-      <div className={`w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
+      <div className={`w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-6 transition-all duration-500 ${
         isHovered ? 'animate-pulse' : ''
       }`}>
-        {step.icon}
+        {React.cloneElement(step.icon, { className: step.icon.props.className.replace('text-white', 'text-purple-300') })}
       </div>
-      <h3 className="text-xl font-bold text-gray-900 mb-3">
+      <h3 className="text-xl font-bold text-white mb-3">
         {step.title}
       </h3>
-      <p className="text-gray-600">
+      <p className="text-gray-300">
         {step.description}
       </p>
     </div>
@@ -30,15 +30,15 @@ const StepCard = ({ step, index }: { step: any; index: number }) => {
 };
 
 export const ProcessSection = () => {
-  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ 
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
+  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({
+    threshold: 0.1,
+    rootMargin: '0px'
   });
-  const [stepsRef, areStepsVisible] = useIntersectionObserver<HTMLDivElement>({ 
-    threshold: 0.3 
+  const [stepsRef, areStepsVisible] = useIntersectionObserver<HTMLDivElement>({
+    threshold: 0.2 
   });
-  const [buttonRef, isButtonVisible] = useIntersectionObserver<HTMLDivElement>({ 
-    threshold: 0.5 
+  const [buttonRef, isButtonVisible] = useIntersectionObserver<HTMLDivElement>({
+    threshold: 0.3
   });
 
   const steps = [
@@ -70,17 +70,21 @@ export const ProcessSection = () => {
     <section 
       ref={sectionRef} 
       id="process" 
-      className={`py-20 bg-white section-animate from-left ${isSectionVisible ? 'appear' : ''}`}
+      className={`py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden section-animate from-left ${isSectionVisible ? 'appear' : ''}`}
     >
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-[550px] h-[550px] bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-200 top-10 -right-40 opacity-50"></div>
+        <div className="absolute w-[350px] h-[350px] bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-900 bottom-20 -left-32 opacity-40"></div>
+      </div>
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className={`text-center max-w-3xl mx-auto mb-16 section-animate scale-in ${isSectionVisible ? 'appear' : ''}`}>
-          <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-medium text-sm mb-4">
+          <span className="inline-block px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">
             시작하기
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             아이메이트와 함께하는 3단계
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-300">
             복잡한 설정 없이, 빠르게 시작하세요
           </p>
         </div>
@@ -94,7 +98,7 @@ export const ProcessSection = () => {
               <StepCard step={step} index={index} />
               {index < steps.length - 1 && (
                 <div className="hidden md:flex items-center justify-center md:w-auto">
-                  <ArrowRight className="h-8 w-8 text-gray-300 animate-pulse" />
+                  <ArrowRight className="h-8 w-8 text-gray-600 animate-pulse" />
                 </div>
               )}
             </React.Fragment>
@@ -108,10 +112,11 @@ export const ProcessSection = () => {
         >
           <button 
             onClick={handleStartNow}
-            className="px-8 py-4 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition-all transform hover:scale-105 duration-200 shadow-lg animate-float"
+            className="group px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-full font-semibold hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-500/30 text-lg flex items-center justify-center mx-auto"
             aria-label="Start Now"
           >
             지금 바로 시작하기
+            <ArrowRight className="inline-block ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>

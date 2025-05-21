@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
 
 const FAQItem = ({ faq, isOpen, onClick }: { faq: any; isOpen: boolean; onClick: () => void }) => (
-  <div className="mb-4 border-b border-gray-200 pb-4 last:border-b-0" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+  <div className="mb-4 border-b border-white/10 pb-4 last:border-b-0" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
     <button
       onClick={onClick}
       className="flex justify-between items-center w-full text-left py-4 group"
       aria-expanded={isOpen}
       aria-controls={`faq-answer-${faq.id}`}
     >
-      <h3 className="text-lg font-medium text-slate-800 group-hover:text-indigo-600 transition-colors" itemProp="name">
+      <h3 className="text-lg font-medium text-white group-hover:text-purple-300 transition-colors" itemProp="name">
         {faq.question}
       </h3>
-      <div className="text-indigo-600 ml-4 flex-shrink-0">
+      <div className="text-purple-300 ml-4 flex-shrink-0">
         {isOpen ? (
           <Minus className="h-5 w-5" />
         ) : (
@@ -29,7 +29,7 @@ const FAQItem = ({ faq, isOpen, onClick }: { faq: any; isOpen: boolean; onClick:
       }`}
       itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer"
     >
-      <p className="text-slate-600 leading-relaxed" itemProp="text">
+      <p className="text-gray-300 leading-relaxed" itemProp="text">
         {faq.answer}
       </p>
     </div>
@@ -88,22 +88,26 @@ export const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-32 bg-slate-50" itemScope itemType="https://schema.org/FAQPage">
-      <div className="container mx-auto px-4 md:px-8">
+    <section id="faq" className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden" itemScope itemType="https://schema.org/FAQPage">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-400 -bottom-40 -right-32 opacity-60"></div>
+        <div className="absolute w-[300px] h-[300px] bg-sky-400/10 rounded-full blur-3xl animate-pulse delay-1000 top-20 -left-24 opacity-50"></div>
+      </div>
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-full font-medium text-sm mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">
             <HelpCircle className="h-5 w-5" />
             자주 묻는 질문
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
             궁금한 점이 있으신가요?
           </h2>
-          <p className="text-lg md:text-xl text-slate-600">
+          <p className="text-lg md:text-xl text-gray-300">
             iMate 서비스에 대해 자주 문의하시는 질문과 답변을 모아봤어요.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-xl p-6 md:p-8">
+        <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl rounded-xl p-6 md:p-8">
           {faqs.map((faq, index) => (
             <FAQItem
               key={faq.id}

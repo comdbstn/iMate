@@ -73,6 +73,7 @@ export const AiAgentIntroSection = () => {
             icon={<FileText className="w-6 h-6" />} 
             title="문서 처리 및 요약"
             description="대량의 문서(PDF, 워드, 텍스트 파일 등)를 이해하고, 핵심 내용을 요약하거나 필요한 정보를 추출하여 보고서를 생성합니다."
+            example="온라인 쇼핑몰에서 고객의 이전 구매 내역과 장바구니 상품을 기반으로 개인화된 할인 쿠폰을 발행하고, 이메일로 발송합니다."
           />
           <FeatureCard 
             icon={<ShoppingCart className="w-6 h-6" />} 
