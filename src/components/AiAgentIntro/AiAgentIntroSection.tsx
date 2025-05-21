@@ -12,16 +12,16 @@ const FeatureCard = ({
   description: string; 
   example?: string; 
 }) => (
-  <div className="bg-white shadow-lg rounded-xl p-6 transform transition-all hover:scale-105">
+  <div className="bg-white/5 backdrop-blur-lg shadow-xl rounded-xl p-6 transform transition-all hover:scale-105 border border-white/10 hover:shadow-purple-500/20">
     <div className="flex items-start mb-4">
-      <div className="p-2 bg-sky-100 text-sky-600 rounded-full mr-4">{icon}</div>
-      <h3 className="text-xl font-semibold text-slate-800">{title}</h3>
+      <div className="p-3 bg-purple-500/10 text-purple-400 rounded-full mr-4">{icon}</div>
+      <h3 className="text-xl font-semibold text-white">{title}</h3>
     </div>
-    <p className="text-slate-600 mb-3">{description}</p>
+    <p className="text-gray-300 mb-3">{description}</p>
     {example && (
-      <div className="mt-3 pt-3 border-t border-slate-200">
-        <p className="text-sm text-slate-500 font-medium mb-1">예시:</p>
-        <p className="text-sm text-slate-600 bg-slate-50 p-2 rounded-md">{example}</p>
+      <div className="mt-3 pt-3 border-t border-white/10">
+        <p className="text-sm text-purple-300 font-medium mb-1">예시:</p>
+        <p className="text-sm text-gray-300 bg-slate-700/60 p-3 rounded-md">{example}</p>
       </div>
     )}
   </div>
@@ -29,13 +29,22 @@ const FeatureCard = ({
 
 export const AiAgentIntroSection = () => {
   return (
-    <section id="ai-agent-intro" className="py-20 md:py-32 bg-slate-50">
-      <div className="container mx-auto px-4 md:px-8">
+    <section 
+      id="ai-agent-intro" 
+      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden"
+    >
+      {/* Animated background elements - similar to ProblemSection */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-3xl animate-pulse -top-32 -left-48 opacity-70"></div>
+        <div className="absolute w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500 bottom-0 -right-32 opacity-60"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">
-            AI 에이전트, <span className="text-sky-600">무엇이 다를까요?</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            AI 에이전트, <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 text-transparent bg-clip-text">무엇이 다를까요?</span>
           </h2>
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
             단순한 챗봇을 넘어, AI 에이전트는 특정 목표를 달성하기 위해 자율적으로 계획하고 실행하는 지능형 시스템입니다. 
             복잡한 작업을 처리하고, 다양한 도구와 서비스를 활용하여 실제 업무를 수행할 수 있습니다.
           </p>
@@ -80,7 +89,7 @@ export const AiAgentIntroSection = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-lg text-slate-700">
+          <p className="text-lg text-gray-200">
             iMate는 이러한 AI 에이전트 기술을 활용하여 귀사의 비즈니스에 실질적인 가치를 제공합니다.
           </p>
         </div>
