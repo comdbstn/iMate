@@ -1,121 +1,199 @@
-import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, MessageCircle, HelpCircle, Sparkles } from 'lucide-react';
+import Button from '../common/Button';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-const FAQItem = ({ faq, isOpen, onClick }: { faq: any; isOpen: boolean; onClick: () => void }) => (
-  <div className="mb-4 border-b border-white/10 pb-4 last:border-b-0" itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
-    <button
-      onClick={onClick}
-      className="flex justify-between items-center w-full text-left py-4 group"
-      aria-expanded={isOpen}
-      aria-controls={`faq-answer-${faq.id}`}
+type FAQItemType = {
+  id: string;
+  question: string;
+  answer: string;
+  isOpen?: boolean;
+  schema?: object; 
+};
+
+const faqData: FAQItemType[] = [
+  {
+    id: 'what-is-ai-agent',
+    question: 'AI 에이전트가 정확히 무엇인가요?',
+    answer: 'AI 에이전트는 특정 목표를 달성하기 위해 자율적으로 계획하고, 배우고, 행동하는 지능형 시스템입니다. 단순 반복 작업을 자동화하는 것을 넘어, 복잡한 문제를 해결하고 사용자와 상호작용하며 실제 업무를 수행할 수 있습니다. 예를 들어, 고객 문의에 응대하거나, 데이터를 분석하여 보고서를 작성하거나, 마케팅 캠페인을 관리하는 등의 일을 할 수 있습니다.',
+    schema: {
+      "@type": "Question",
+      name: "AI 에이전트가 정확히 무엇인가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI 에이전트는 특정 목표를 달성하기 위해 자율적으로 계획하고, 배우고, 행동하는 지능형 시스템입니다. 단순 반복 작업을 자동화하는 것을 넘어, 복잡한 문제를 해결하고 사용자와 상호작용하며 실제 업무를 수행할 수 있습니다. 예를 들어, 고객 문의에 응대하거나, 데이터를 분석하여 보고서를 작성하거나, 마케팅 캠페인을 관리하는 등의 일을 할 수 있습니다."
+      }
+    }
+  },
+  {
+    id: 'how-to-use',
+    question: 'iMate AI 에이전트는 어떻게 사용하나요?',
+    answer: 'iMate AI 에이전트는 귀사의 기존 업무 시스템(CRM, ERP, 메신저 등)과 유연하게 연동됩니다. 별도의 복잡한 설치 과정 없이 간단한 설정을 통해 바로 사용을 시작할 수 있습니다. 또한, 직관적인 대시보드를 통해 AI 에이전트의 활동을 모니터링하고 관리할 수 있으며, 필요에 따라 전문가의 지원도 받으실 수 있습니다.',
+    schema: {
+      "@type": "Question",
+      name: "iMate AI 에이전트는 어떻게 사용하나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "iMate AI 에이전트는 귀사의 기존 업무 시스템(CRM, ERP, 메신저 등)과 유연하게 연동됩니다. 별도의 복잡한 설치 과정 없이 간단한 설정을 통해 바로 사용을 시작할 수 있습니다. 또한, 직관적인 대시보드를 통해 AI 에이전트의 활동을 모니터링하고 관리할 수 있으며, 필요에 따라 전문가의 지원도 받으실 수 있습니다."
+      }
+    }
+  },
+  {
+    id: 'customization',
+    question: '우리 회사에 맞는 맞춤형 AI 에이전트 제작이 가능한가요?',
+    answer: '네, 가능합니다. iMate는 각 비즈니스의 특성과 요구사항에 맞춰 AI 에이전트를 맞춤 제작해 드립니다. 업종별 전문 지식 학습, 기업 문화 및 브랜드 톤앤매너 적용, 특정 업무 프로세스 자동화 등 세부적인 부분까지 고려하여 최적의 AI 파트너를 만들어 드립니다. 전문가와의 상담을 통해 자세한 내용을 확인하세요.',
+    schema: {
+      "@type": "Question",
+      name: "우리 회사에 맞는 맞춤형 AI 에이전트 제작이 가능한가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "네, 가능합니다. iMate는 각 비즈니스의 특성과 요구사항에 맞춰 AI 에이전트를 맞춤 제작해 드립니다. 업종별 전문 지식 학습, 기업 문화 및 브랜드 톤앤매너 적용, 특정 업무 프로세스 자동화 등 세부적인 부분까지 고려하여 최적의 AI 파트너를 만들어 드립니다. 전문가와의 상담을 통해 자세한 내용을 확인하세요."
+      }
+    }
+  },
+  {
+    id: 'data-security',
+    question: '데이터 보안은 어떻게 이루어지나요?',
+    answer: 'iMate는 고객 데이터 보안을 최우선으로 생각합니다. 최신 암호화 기술을 적용하고 엄격한 데이터 접근 관리 정책을 시행하여 고객님의 소중한 정보가 안전하게 보호될 수 있도록 만전을 기하고 있습니다. 또한, 관련 법규 및 규제를 철저히 준수하며, 정기적인 보안 감사를 통해 시스템의 안정성을 확보합니다.',
+    schema: {
+      "@type": "Question",
+      name: "데이터 보안은 어떻게 이루어지나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "iMate는 고객 데이터 보안을 최우선으로 생각합니다. 최신 암호화 기술을 적용하고 엄격한 데이터 접근 관리 정책을 시행하여 고객님의 소중한 정보가 안전하게 보호될 수 있도록 만전을 기하고 있습니다. 또한, 관련 법규 및 규제를 철저히 준수하며, 정기적인 보안 감사를 통해 시스템의 안정성을 확보합니다."
+      }
+    }
+  },
+  {
+    id: 'cost',
+    question: 'AI 에이전트 도입 비용은 어느 정도인가요?',
+    answer: 'AI 에이전트 도입 비용은 필요한 기능, 연동 시스템의 복잡성, 데이터 처리량 등에 따라 달라집니다. iMate는 합리적이고 투명한 요금 정책을 가지고 있으며, 초기 맞춤 제작 비용과 월별 운영/유지보수 비용으로 구성됩니다. 자세한 내용은 '요금안내' 섹션을 참고하시거나, 맞춤 견적 상담을 통해 확인하실 수 있습니다.',
+    schema: {
+      "@type": "Question",
+      name: "AI 에이전트 도입 비용은 어느 정도인가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI 에이전트 도입 비용은 필요한 기능, 연동 시스템의 복잡성, 데이터 처리량 등에 따라 달라집니다. iMate는 합리적이고 투명한 요금 정책을 가지고 있으며, 초기 맞춤 제작 비용과 월별 운영/유지보수 비용으로 구성됩니다. 자세한 내용은 '요금안내' 섹션을 참고하시거나, 맞춤 견적 상담을 통해 확인하실 수 있습니다."
+      }
+    }
+  },
+];
+
+const FAQItem = ({ item, onToggle, delay = 0 }: { item: FAQItemType; onToggle: (id: string) => void; delay?: number; }) => {
+  const [ref, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
+  
+  return (
+    <div 
+      ref={ref}
+      className={`bg-slate-800/60 backdrop-blur-md border border-white/10 rounded-lg shadow-lg transition-all duration-500 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
+      style={{ transitionDelay: `${delay}ms` }}
     >
-      <h3 className="text-lg font-medium text-white group-hover:text-purple-300 transition-colors" itemProp="name">
-        {faq.question}
-      </h3>
-      <div className="text-purple-300 ml-4 flex-shrink-0">
-        {isOpen ? (
-          <Minus className="h-5 w-5" />
-        ) : (
-          <Plus className="h-5 w-5" />
-        )}
+      <button
+        onClick={() => onToggle(item.id)}
+        className="w-full flex justify-between items-center p-6 text-left hover:bg-white/5 transition-colors duration-200"
+        aria-expanded={item.isOpen}
+        aria-controls={`faq-answer-${item.id}`}
+      >
+        <span className="text-lg font-medium text-white">{item.question}</span>
+        <ChevronDown 
+          className={`h-6 w-6 text-purple-300 transition-transform duration-300 ${item.isOpen ? 'transform rotate-180' : ''}`}
+        />
+      </button>
+      <div 
+        id={`faq-answer-${item.id}`}
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${item.isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="p-6 pt-0">
+          <p className="text-gray-300 leading-relaxed">{item.answer}</p>
+        </div>
       </div>
-    </button>
-    <div
-      id={`faq-answer-${faq.id}`}
-      role="region"
-      aria-labelledby={`faq-question-${faq.id}`}
-      className={`transition-all duration-300 ease-in-out overflow-hidden ${
-        isOpen ? 'max-h-[500px] opacity-100 pt-2 pb-4' : 'max-h-0 opacity-0'
-      }`}
-      itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer"
-    >
-      <p className="text-gray-300 leading-relaxed" itemProp="text">
-        {faq.answer}
-      </p>
     </div>
-  </div>
-);
+  );
+};
 
 export const FAQSection = () => {
-  const [openStates, setOpenStates] = useState<boolean[]>([]);
-  
-  const faqs = [
-    {
-      id: 'faq-1',
-      question: 'iMate AI 에이전트는 어떤 종류의 업무를 자동화할 수 있나요?',
-      answer: 'iMate AI 에이전트는 고객 서비스 응대, 반복적인 사무 업무, 데이터 입력 및 관리, 콘텐츠 생성, 마케팅 자동화, 정보 검색 및 요약 등 다양한 업무를 자동화할 수 있습니다. 귀사의 특정 요구에 맞춰 기능을 맞춤 설정할 수 있습니다.'
-    },
-    {
-      id: 'faq-2',
-      question: '기존에 사용하고 있는 소프트웨어나 시스템과 연동이 가능한가요?',
-      answer: '네, 가능합니다. iMate는 CRM, ERP, 이메일, 캘린더, 슬랙, 구글 워크스페이스 등 다양한 업무용 소프트웨어 및 시스템과 API를 통해 유연하게 연동됩니다. 특정 시스템 연동이 필요한 경우 상담 시 문의해주세요.'
-    },
-    {
-      id: 'faq-3',
-      question: 'AI 캐릭터의 목소리나 말투를 변경할 수 있나요?',
-      answer: '네, 가능합니다. 제공되는 AI 캐릭터의 기본적인 성격과 말투 외에도, 원하시는 톤앤매너(예: 전문적, 친근함 등)를 설정하거나 특정 브랜드 가이드라인에 맞춰 커스터마이징할 수 있습니다. 음성 지원 모델의 경우 목소리 톤과 스타일도 선택 가능합니다.'
-    },
-    {
-      id: 'faq-4',
-      question: '데이터 보안은 어떻게 이루어지나요? 민감한 정보도 안전하게 처리되나요?',
-      answer: 'iMate는 데이터 보안을 매우 중요하게 생각합니다. 모든 데이터는 전송 중 및 저장 시 암호화되며, 최신 보안 표준과 규정을 준수합니다. 고객사의 데이터는 AI 모델 학습에 재사용되지 않으며, 접근 권한 관리 및 보안 감사를 통해 철저히 관리됩니다. 온프레미스 구축 옵션도 제공하여 데이터 통제권을 강화할 수 있습니다.'
-    },
-    {
-      id: 'faq-5',
-      question: 'iMate 도입 비용과 유지보수 비용은 어떻게 되나요?',
-      answer: 'iMate 도입 비용은 초기 맞춤 AI 에이전트 제작 비용과 월별 운영 및 유지보수 비용으로 구성됩니다. 제작 비용은 약 50만원부터 시작하며, 기능의 복잡도와 연동 범위에 따라 달라집니다. 월별 유지보수 비용은 약 10만원부터 시작하며, 사용량과 지원 범위에 따라 조정될 수 있습니다. 자세한 내용은 요금제 섹션을 참고하시거나 맞춤 상담을 요청해주세요.'
-    },
-    {
-      id: 'faq-6',
-      question: 'AI 에이전트가 저희 회사 업무에 얼마나 도움이 될지 어떻게 알 수 있나요?',
-      answer: 'iMate는 상담을 통해 귀사의 업무 프로세스를 분석하고, AI 에이전트 도입으로 얻을 수 있는 구체적인 기대 효과(시간 절약, 비용 감축, 생산성 향상 등)를 예측해 드립니다. 또한, 특정 업무에 대한 PoC(Proof of Concept, 개념 증명)를 진행하여 실제 효과를 검증해 보실 수도 있습니다.'
-    },
-    {
-      id: 'faq-7',
-      question: '사용 중 문제가 발생하면 기술 지원은 어떻게 받을 수 있나요?',
-      answer: 'iMate는 이메일, 실시간 채팅, 전화 등 다양한 채널을 통해 기술 지원을 제공합니다. 계약 플랜에 따라 전담 매니저가 배정될 수도 있으며, 문제 해결을 위한 원격 지원 및 방문 지원도 가능합니다. 사용자 매뉴얼과 FAQ 자료도 함께 제공됩니다.'
-    }
-  ];
-  
-  React.useEffect(() => {
-    setOpenStates(new Array(faqs.length).fill(false));
-  }, [faqs.length]);
+  const [openFAQ, setOpenFAQ] = useState<string | null>(null);
+  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.05 });
+  const [titleRef, isTitleVisible] = useIntersectionObserver<HTMLHeadingElement>({ threshold: 0.2 });
+  const [descriptionRef, isDescriptionVisible] = useIntersectionObserver<HTMLParagraphElement>({ threshold: 0.2 });
+  const [buttonRef, isButtonVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.2 });
 
-  const toggleFAQ = (index: number) => {
-    setOpenStates(prevStates => 
-      prevStates.map((state, i) => (i === index ? !state : state))
-    );
+  const handleToggle = (id: string) => {
+    setOpenFAQ(prevOpen => (prevOpen === id ? null : id));
+  };
+
+  const handleContactScroll = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map(item => item.schema).filter(Boolean),
   };
 
   return (
-    <section id="faq" className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-teal-900 to-green-900 text-white relative overflow-hidden" itemScope itemType="https://schema.org/FAQPage">
+    <section 
+      id="faq" 
+      ref={sectionRef}
+      className="py-20 md:py-32 bg-gradient-to-br from-sky-900 via-teal-800 to-slate-900 text-white relative overflow-hidden"
+    >
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
+      {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[500px] h-[500px] bg-green-500/10 rounded-full blur-3xl animate-pulse delay-400 -bottom-48 -right-36 opacity-50"></div>
-        <div className="absolute w-[300px] h-[300px] bg-teal-400/10 rounded-full blur-3xl animate-pulse delay-1000 top-28 -left-28 opacity-40"></div>
+        <div className={`absolute w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30' : 'opacity-0'} -top-20 -left-48`}></div>
+        <div className={`absolute w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-20 delay-500' : 'opacity-0'} bottom-[-100px] -right-32`}></div>
       </div>
+
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">
-            <HelpCircle className="h-5 w-5" />
-            자주 묻는 질문
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            궁금한 점이 있으신가요?
-          </h2>
-          <p className="text-lg md:text-xl text-gray-300">
-            iMate 서비스에 대해 자주 문의하시는 질문과 답변을 모아봤어요.
+        <div className="text-center mb-12 md:mb-16">
+          <div 
+            ref={titleRef} // titleRef를 h2 대신 이 div에 적용 (애니메이션 일관성)
+            className={`transition-all duration-500 ${isTitleVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-teal-300 mb-4 text-sm">
+              <HelpCircle className="h-4 w-4" />
+              <span>자주 묻는 질문</span>
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              궁금한 점이 있으신가요? <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-sky-400 text-transparent bg-clip-text">무엇이든 물어보세요!</span>
+            </h2>
+          </div>
+          <p 
+            ref={descriptionRef}
+            className={`text-lg md:text-xl text-gray-300 max-w-2xl mx-auto transition-all duration-500 delay-100 ${isDescriptionVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
+          >
+            iMate AI 에이전트 서비스에 대해 자주 묻는 질문과 답변입니다. 
+            더 궁금한 점이 있다면 언제든지 문의해주세요.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl rounded-xl p-6 md:p-8">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={faq.id}
-              faq={faq}
-              isOpen={openStates[index]}
-              onClick={() => toggleFAQ(index)}
+        <div className="max-w-3xl mx-auto space-y-4 mb-12 md:mb-16">
+          {faqData.map((item, index) => (
+            <FAQItem 
+              key={item.id} 
+              item={{ ...item, isOpen: openFAQ === item.id }} 
+              onToggle={handleToggle} 
+              delay={200 + index * 100} // 순차적 애니메이션
             />
           ))}
+        </div>
+
+        <div 
+          ref={buttonRef}
+          className={`text-center transition-all duration-500 delay-300 ${isButtonVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
+        >
+          <p className="text-lg text-gray-300 mb-6">더 궁금한 점이나 특정 요구사항이 있으신가요?</p>
+          <Button 
+            onClick={handleContactScroll} 
+            className="px-10 py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-600 text-white rounded-full font-semibold text-lg hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-cyan-500/30 flex items-center justify-center mx-auto"
+            aria-label="문의하기"
+          >
+            전문가에게 직접 문의하기
+            <MessageCircle className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>
