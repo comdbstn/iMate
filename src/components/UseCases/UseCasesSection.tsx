@@ -98,8 +98,10 @@ export const UseCasesSection = () => {
     <section 
       id="use-cases"
       ref={sectionRef}
-      className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white"
+      className="py-20 md:py-32 bg-slate-800 text-white relative overflow-hidden smooth-bg-transition"
     >
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-purple-900 opacity-30"></div>
+
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
         <div className={`absolute w-[650px] h-[650px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30' : 'opacity-0'} -top-40 -left-48`}></div>

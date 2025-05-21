@@ -36,7 +36,7 @@ export const ProcessSection = () => {
     <section 
       id="process"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-slate-900 text-white relative overflow-hidden smooth-bg-transition"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">

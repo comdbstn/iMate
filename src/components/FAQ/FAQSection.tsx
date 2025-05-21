@@ -136,8 +136,10 @@ export const FAQSection = () => {
     <section 
       id="faq" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-slate-800 text-white relative overflow-hidden smooth-bg-transition"
+      itemScope itemType="https://schema.org/FAQPage"
     >
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-purple-900 opacity-30"></div>
       <script type="application/ld+json">
         {JSON.stringify(faqSchema)}
       </script>

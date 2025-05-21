@@ -48,9 +48,9 @@ export const BenefitsSection = () => {
 
   return (
     <section 
+      id="benefits"
       ref={sectionRef}
-      id="benefits" 
-      className={`py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden section-animate from-right ${isSectionVisible ? 'appear' : ''}`}
+      className="py-20 md:py-32 bg-slate-900 text-white relative overflow-hidden smooth-bg-transition"
     >
       <div className="absolute inset-0 z-0">
         <div className="absolute w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-3xl animate-pulse -top-20 -right-40 opacity-60"></div>

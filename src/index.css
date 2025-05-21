@@ -169,3 +169,42 @@
   transform: none !important;
   transition: none !important;
 }
+
+.smooth-bg-transition::before,
+.smooth-bg-transition::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 150px; /* 그라데이션 높이, 필요에 따라 조절 */
+  z-index: -1; /* 내용 뒤에 위치하도록 */
+}
+
+.smooth-bg-transition::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgb(15 23 42 / 1), rgb(15 23 42 / 0)); /* slate-900 to transparent slate-900 */
+}
+
+.smooth-bg-transition::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgb(15 23 42 / 1), rgb(15 23 42 / 0)); /* slate-900 to transparent slate-900 */
+}
+
+/* CharactersSection 자체의 그라데이션과 잘 어울리도록 조정 */
+.smooth-bg-transition {
+  /* from-slate-900 via-purple-900 to-slate-900 */
+  /* slate-900 is rgb(15 23 42) */
+  /* purple-900 is rgb(76 29 149) - Tailwind v3.3.2 */
+}
+
+.smooth-bg-transition::before {
+  top: 0;
+  /* 이전 섹션의 slate-900에서 CharactersSection의 from-slate-900으로 */
+  background: linear-gradient(to bottom, rgb(15 23 42 / 1) 0%, rgb(15 23 42 / 1) 50%, rgb(15 23 42 / 0) 100%); 
+}
+
+.smooth-bg-transition::after {
+  bottom: 0;
+  /* CharactersSection의 to-slate-900에서 다음 섹션의 slate-900으로 */
+  background: linear-gradient(to top, rgb(15 23 42 / 1) 0%, rgb(15 23 42 / 1) 50%, rgb(15 23 42 / 0) 100%);
+}

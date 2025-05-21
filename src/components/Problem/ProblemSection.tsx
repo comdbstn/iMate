@@ -45,7 +45,7 @@ export const ProblemSection = () => {
     <section 
       id="problem" 
       ref={sectionRef}
-      className="py-32 relative overflow-hidden bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white"
+      className="py-20 md:py-32 bg-slate-900 text-white relative overflow-hidden smooth-bg-transition"
     >
       {/* Animated background elements - Adjusted for new gradient */}
       <div className="absolute inset-0 z-0">

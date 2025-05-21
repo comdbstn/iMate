@@ -200,43 +200,46 @@ export const CharactersSection = () => {
 
   const CharacterCard = ({ character, onInfoClick, delay = 0 }: { character: Character; onInfoClick: (character: Character) => void; delay?: number; }) => {
     const [ref, isVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
-    const IconComponent = character.icon;
 
     return (
       <div
         ref={ref}
-        className={`relative group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 border border-white/10 ${character.characterSpecificBg || 'bg-slate-800/80 backdrop-blur-sm'} ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
+        className={`relative group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 border border-white/10 bg-slate-800/70 backdrop-blur-md ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
         style={{ animationDelay: `${delay}ms` }}
       >
-        <div className={`absolute inset-0 ${character.bgColorClass} opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+        <div className={`absolute inset-0 ${character.bgColorClass} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
         
-        <div className="relative p-6 md:p-8 z-10 flex flex-col h-full">
-          <div className="flex justify-between items-start mb-4">
-            <div className={`p-3 rounded-lg bg-white/10 ${character.highlightColorClass}`}>
-              <IconComponent size={28} />
-            </div>
-            <Button
+        <div className="relative w-full h-56 md:h-64 overflow-hidden">
+          <img 
+            src={character.image}
+            alt={character.name}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-in-out"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-800/80 via-slate-800/30 to-transparent"></div>
+          <Button
               variant="icon"
-              className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2.5 transition-all transform group-hover:scale-110 group-hover:rotate-12"
+              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2.5 transition-all transform group-hover:scale-110 group-hover:rotate-12 z-10"
               onClick={() => onInfoClick(character)}
               aria-label={`${character.name} 상세 정보 보기`}
             >
               <Info size={20} />
             </Button>
-          </div>
-
-          <h3 className={`text-2xl font-bold mb-1.5 ${character.highlightColorClass}`}>{character.name}</h3>
-          <p className={`text-sm font-semibold mb-3 ${character.textColorClass} opacity-80`}>{character.title}</p>
+        </div>
+        
+        <div className="relative p-5 md:p-6 z-10 flex flex-col">
+          <h3 className={`text-2xl font-bold mb-1 ${character.highlightColorClass}`}>{character.name}</h3>
+          <p className={`text-sm font-semibold mb-3 ${character.textColorClass} opacity-70`}>{character.title}</p>
           
-          <p className={`text-sm ${character.textColorClass} opacity-90 mb-5 flex-grow min-h-[60px]`}>
+          <p className={`text-sm ${character.textColorClass} opacity-80 mb-4 flex-grow min-h-[60px]`}>
             {character.description}
           </p>
 
-          <div className="mb-5">
-            <h4 className={`text-xs font-semibold uppercase ${character.highlightColorClass} opacity-70 mb-2`}>주요 기능</h4>
+          <div className="mb-4">
+            <h4 className={`text-xs font-semibold uppercase ${character.highlightColorClass} opacity-60 mb-1.5`}>주요 기능</h4>
             <div className="flex flex-wrap gap-1.5">
               {character.baseFunctions.slice(0, 2).map(func => (
-                <span key={func} className={`px-2.5 py-1 text-xs bg-white/5 ${character.textColorClass} opacity-80 rounded-md`}>
+                <span key={func} className={`px-2.5 py-1 text-[11px] bg-white/5 ${character.textColorClass} opacity-70 rounded-md`}>
                   {func.split('(')[0].trim()}
                 </span>
               ))}
@@ -260,7 +263,7 @@ export const CharactersSection = () => {
     <section
       id="characters"
       ref={sectionRef}
-      className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 text-white"
+      className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 text-white smooth-bg-transition"
     >
       <div className="absolute inset-0 z-0">
         <div className={`absolute w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-3xl transition-all duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-50' : 'opacity-0'} -top-40 -right-60 animate-spin-slow`}></div>

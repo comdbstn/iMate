@@ -16,7 +16,7 @@ export const ContactSection = () => {
     <section 
       id="contact" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-purple-600 via-indigo-700 to-slate-900 text-white smooth-bg-transition"
     >
       <div className="absolute inset-0 z-0">
         <div className={`absolute w-[650px] h-[650px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -bottom-40 -left-52`}></div>

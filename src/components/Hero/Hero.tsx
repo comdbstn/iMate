@@ -37,8 +37,9 @@ export const Hero = () => {
 
   return (
     <section 
-      ref={sectionRef}
-      className="min-h-screen relative overflow-hidden bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white flex items-center justify-center"
+      id="hero"
+      ref={sectionRef} 
+      className="relative h-screen flex flex-col items-center justify-center text-center p-4 overflow-hidden smooth-bg-transition"
     >
       {/* Animated background elements - Adjusted */}
       <div className="absolute inset-0 z-0">

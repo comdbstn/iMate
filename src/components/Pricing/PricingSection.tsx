@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { CheckCircle, MessageCircle, Sparkles } from 'lucide-react';
 import Button from '../common/Button';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useInView } from 'react-intersection-observer';
 
 const IncludedFeature = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number; }) => {
   const [ref, isVisible] = useIntersectionObserver<HTMLLIElement>({ threshold: 0.2 });
@@ -18,12 +19,13 @@ const IncludedFeature = ({ children, delay = 0 }: { children: React.ReactNode; d
 };
 
 export const PricingSection = () => {
-  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.05 });
+  const [sectionRef, isVisible] = useIntersectionObserver<HTMLElement>({ threshold: 0.1 });
   const [badgeRef, isBadgeVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.2 });
   const [titleRef, isTitleVisible] = useIntersectionObserver<HTMLHeadingElement>({ threshold: 0.2 });
   const [descriptionRef, isDescriptionVisible] = useIntersectionObserver<HTMLParagraphElement>({ threshold: 0.2 });
   const [pricingBoxRef, isPricingBoxVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.1 });
   const [buttonRef, isButtonVisible] = useIntersectionObserver<HTMLDivElement>({ threshold: 0.2 });
+  const { ref: cardsRef, inView: cardsInView } = useInView({ threshold: 0.2, triggerOnce: true });
 
   const handleContactScroll = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -33,11 +35,11 @@ export const PricingSection = () => {
     <section 
       id="pricing" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-purple-600 via-indigo-700 to-slate-900 text-white relative overflow-hidden smooth-bg-transition"
     >
       <div className="absolute inset-0 z-0">
-        <div className={`absolute w-[700px] h-[700px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-52 -left-72`}></div>
-        <div className={`absolute w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} bottom-[-250px] right-[-220px]`}></div>
+        <div className={`absolute w-[700px] h-[700px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-52 -left-72`}></div>
+        <div className={`absolute w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} bottom-[-250px] right-[-220px]`}></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
