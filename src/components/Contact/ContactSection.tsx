@@ -16,16 +16,16 @@ export const ContactSection = () => {
     <section 
       id="contact" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-red-800 to-orange-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
-        <div className={`absolute w-[650px] h-[650px] bg-red-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -bottom-40 -left-52`}></div>
-        <div className={`absolute w-[450px] h-[450px] bg-orange-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} top-[-60px] -right-36`}></div>
+        <div className={`absolute w-[650px] h-[650px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -bottom-40 -left-52`}></div>
+        <div className={`absolute w-[450px] h-[450px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} top-[-60px] -right-36`}></div>
       </div>
       <div className="container mx-auto px-4 md:px-8 text-center relative z-10">
         <span 
           ref={badgeRef}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-red-300 mb-6 text-sm font-medium transition-all duration-500 ${isBadgeVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-rose-300 mb-6 text-sm font-medium transition-all duration-500 ${isBadgeVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
         >
           <Sparkles className="h-4 w-4" />
           지금 바로 시작하세요
@@ -51,7 +51,7 @@ export const ContactSection = () => {
             href={KAKAO_CHANNEL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group px-10 py-5 bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 text-white rounded-full font-semibold hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-orange-500/30 text-xl inline-flex items-center justify-center mx-auto"
+            className="group px-10 py-5 bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 text-white rounded-full font-semibold hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-pink-500/30 text-xl inline-flex items-center justify-center mx-auto"
             aria-label="iMate 카카오톡 채널로 문의하기"
           >
             <MessageCircle className="mr-3 h-6 w-6" />

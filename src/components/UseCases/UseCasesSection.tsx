@@ -5,7 +5,7 @@ import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 const TabButton = ({ onClick, isActive }: { onClick: () => void; isActive: boolean; }) => (
   <button
     onClick={onClick}
-    className={`w-3 h-3 rounded-full transition-all duration-300 ${isActive ? 'bg-emerald-400 scale-125' : 'bg-white/20 hover:bg-white/30'}`}
+    className={`w-3 h-3 rounded-full transition-all duration-300 ${isActive ? 'bg-rose-400 scale-125' : 'bg-white/20 hover:bg-white/30'}`}
     aria-pressed={isActive}
     aria-label={isActive ? "Current slide" : "Go to slide"}
   />
@@ -17,29 +17,29 @@ const UseCaseCard = ({ useCase, isActive, delay = 0 }: { useCase: any; isActive:
   return (
     <div
       ref={ref}
-      className={`bg-slate-800/60 backdrop-blur-lg p-8 md:p-12 rounded-2xl border border-white/10 relative overflow-hidden shadow-xl hover:shadow-emerald-500/20 transition-all duration-500 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
+      className={`bg-slate-800/60 backdrop-blur-lg p-8 md:p-12 rounded-2xl border border-white/10 relative overflow-hidden shadow-xl hover:shadow-purple-500/20 transition-all duration-500 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <div className="space-y-6">
           <div className="flex items-center gap-4">
-            <span className="px-4 py-2 bg-white/10 text-emerald-300 rounded-full text-sm font-medium border border-emerald-500/30">
+            <span className="px-4 py-2 bg-white/10 text-rose-300 rounded-full text-sm font-medium border border-rose-500/30">
               {useCase.company}
             </span>
-            <div className={`p-2 rounded-full flex items-center justify-center shadow-md bg-emerald-500/20`}>
-              {React.cloneElement(useCase.character1.icon, { className: 'h-6 w-6 text-emerald-300' })}
+            <div className={`p-2 rounded-full flex items-center justify-center shadow-md bg-rose-500/20`}>
+              {React.cloneElement(useCase.character1.icon, { className: 'h-6 w-6 text-rose-300' })}
             </div>
           </div>
           <h3 className="text-2xl md:text-3xl font-bold text-white">
             {useCase.title}
           </h3>
-          <blockquote className="text-gray-300 text-lg leading-relaxed border-l-4 border-emerald-500/70 pl-6 pr-2 py-2 bg-slate-700/30 rounded-r-md">
+          <blockquote className="text-gray-300 text-lg leading-relaxed border-l-4 border-rose-500/70 pl-6 pr-2 py-2 bg-slate-700/30 rounded-r-md">
             \"{useCase.testimonial}\"
           </blockquote>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400 rounded-full"></div>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 rounded-full"></div>
         </div>
         <div className="relative group">
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-600 to-sky-600 rounded-xl transform transition-transform duration-500 opacity-60 group-hover:opacity-80 group-hover:rotate-1"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-600 via-pink-600 to-purple-600 rounded-xl transform transition-transform duration-500 opacity-60 group-hover:opacity-80 group-hover:rotate-1"></div>
           <img 
             src={useCase.image.replace('.jpeg', '.webp')}
             alt={useCase.title}
@@ -98,12 +98,12 @@ export const UseCasesSection = () => {
     <section 
       id="use-cases"
       ref={sectionRef}
-      className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-lime-900 via-emerald-800 to-teal-900 text-white"
+      className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <div className={`absolute w-[650px] h-[650px] bg-emerald-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30' : 'opacity-0'} -top-40 -left-48`}></div>
-        <div className={`absolute w-[500px] h-[500px] bg-teal-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-20 delay-500' : 'opacity-0'} bottom-[-200px] -right-36`}></div>
+        <div className={`absolute w-[650px] h-[650px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30' : 'opacity-0'} -top-40 -left-48`}></div>
+        <div className={`absolute w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-20 delay-500' : 'opacity-0'} bottom-[-200px] -right-36`}></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -112,12 +112,12 @@ export const UseCasesSection = () => {
             ref={titleRef} 
             className={`transition-all duration-500 ${isTitleVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-emerald-300 mb-4 text-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-rose-300 mb-4 text-sm">
               <Sparkles className="h-4 w-4" />
               <span>고객 성공 사례</span>
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              iMate와 함께 비즈니스를 <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-transparent bg-clip-text">혁신한 이야기</span>
+              iMate와 함께 비즈니스를 <span className="bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 text-transparent bg-clip-text">혁신한 이야기</span>
             </h2>
           </div>
           <p 

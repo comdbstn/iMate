@@ -49,7 +49,7 @@ export const AiAgentIntroSection = () => {
     <section 
       id="ai-agent-intro" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-indigo-900 via-pink-800 to-purple-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
     >
       {/* Animated background elements - Adjusted */}
       <div className="absolute inset-0 z-0">

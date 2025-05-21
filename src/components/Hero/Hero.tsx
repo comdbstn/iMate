@@ -38,11 +38,11 @@ export const Hero = () => {
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-sky-900 text-white flex items-center justify-center"
+      className="min-h-screen relative overflow-hidden bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white flex items-center justify-center"
     >
       {/* Animated background elements - Adjusted */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[700px] h-[700px] bg-sky-500/10 rounded-full blur-3xl animate-pulse -top-52 -left-72 opacity-40"></div>
+        <div className="absolute w-[700px] h-[700px] bg-rose-500/10 rounded-full blur-3xl animate-pulse -top-52 -left-72 opacity-40"></div>
         <div className="absolute w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-700 bottom-[-250px] right-[-220px] opacity-30"></div>
       </div>
 

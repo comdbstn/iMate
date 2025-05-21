@@ -9,12 +9,12 @@ const StepCard = ({ icon, title, description, badge, delay = 0 }: { icon: React.
   return (
     <div 
       ref={ref}
-      className={`bg-slate-800/60 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-lg transform transition-all duration-500 hover:shadow-purple-500/20 hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
+      className={`bg-slate-800/60 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-lg transform transition-all duration-500 hover:shadow-rose-500/20 hover:-translate-y-1 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="flex items-center justify-between mb-4">
-        <div className="p-3 bg-purple-500/10 rounded-full text-purple-400">{icon}</div>
-        <span className="px-3 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full font-medium">{badge}</span>
+        <div className="p-3 bg-rose-500/10 rounded-full text-rose-400">{icon}</div>
+        <span className="px-3 py-1 text-xs bg-rose-500/20 text-rose-300 rounded-full font-medium">{badge}</span>
       </div>
       <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
       <p className="text-gray-300 text-sm leading-relaxed">{description}</p>
@@ -36,12 +36,12 @@ export const ProcessSection = () => {
     <section 
       id="process"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-indigo-800 to-sky-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <div className={`absolute w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-40 -right-52`}></div>
-        <div className={`absolute w-[450px] h-[450px] bg-sky-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} bottom-[-180px] -left-36`}></div>
+        <div className={`absolute w-[600px] h-[600px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-40 -right-52`}></div>
+        <div className={`absolute w-[450px] h-[450px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} bottom-[-180px] -left-36`}></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -50,12 +50,12 @@ export const ProcessSection = () => {
             ref={titleRef}
             className={`transition-all duration-500 ${isTitleVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-indigo-300 mb-4 text-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-rose-300 mb-4 text-sm">
               <Rocket className="h-4 w-4" />
               <span>AI 에이전트 도입 과정</span>
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              최적의 AI 파트너, <span className="bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400 text-transparent bg-clip-text">iMate와 함께 시작하세요</span>
+              최적의 AI 파트너, <span className="bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 text-transparent bg-clip-text">iMate와 함께 시작하세요</span>
             </h2>
           </div>
           <p 
@@ -103,7 +103,7 @@ export const ProcessSection = () => {
         >
           <Button 
             onClick={handleContactScroll} 
-            className="px-10 py-4 bg-gradient-to-r from-indigo-500 via-sky-500 to-teal-500 text-white rounded-full font-semibold text-lg hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-sky-500/30 flex items-center justify-center mx-auto"
+            className="px-10 py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 text-white rounded-full font-semibold text-lg hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-pink-500/30 flex items-center justify-center mx-auto"
             aria-label="AI 도입 상담 시작하기"
           >
             AI 도입 상담 시작하기 

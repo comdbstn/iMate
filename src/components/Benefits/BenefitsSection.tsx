@@ -8,9 +8,9 @@ const BenefitCard = ({ icon, title, description }: { icon: React.ReactNode; titl
   return (
     <div 
       ref={cardRef}
-      className={`section-animate scale-in ${isVisible ? 'appear' : ''} bg-white/5 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-white/10 transition-transform duration-300 hover:transform hover:scale-105 hover:shadow-blue-500/20`}
+      className={`section-animate scale-in ${isVisible ? 'appear' : ''} bg-white/5 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-white/10 transition-transform duration-300 hover:transform hover:scale-105 hover:shadow-purple-500/20`}
     >
-      <div className="bg-blue-500/10 text-blue-400 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+      <div className="bg-purple-500/10 text-purple-400 w-12 h-12 rounded-full flex items-center justify-center mb-4">
         {React.cloneElement(icon as React.ReactElement, { className: 'h-6 w-6' })}
       </div>
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
@@ -50,18 +50,18 @@ export const BenefitsSection = () => {
     <section 
       ref={sectionRef}
       id="benefits" 
-      className={`py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden section-animate from-right ${isSectionVisible ? 'appear' : ''}`}
+      className={`py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden section-animate from-right ${isSectionVisible ? 'appear' : ''}`}
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl animate-pulse -top-20 -right-40 opacity-60"></div>
-        <div className="absolute w-[400px] h-[400px] bg-sky-600/10 rounded-full blur-3xl animate-pulse delay-500 bottom-10 -left-32 opacity-50"></div>
+        <div className="absolute w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-3xl animate-pulse -top-20 -right-40 opacity-60"></div>
+        <div className="absolute w-[400px] h-[400px] bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-500 bottom-10 -left-32 opacity-50"></div>
       </div>
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div 
           ref={titleRef}
           className={`text-center max-w-3xl mx-auto mb-16 section-animate fade-in ${isTitleVisible ? 'appear' : ''}`}
         >
-          <span className="inline-block px-4 py-2 bg-white/10 text-blue-300 rounded-full font-medium text-sm mb-4 border border-white/20">
+          <span className="inline-block px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">
             주요 혜택
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">

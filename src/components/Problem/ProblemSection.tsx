@@ -45,12 +45,12 @@ export const ProblemSection = () => {
     <section 
       id="problem" 
       ref={sectionRef}
-      className="py-32 relative overflow-hidden bg-gradient-to-br from-sky-900 via-purple-900 to-indigo-900 text-white"
+      className="py-32 relative overflow-hidden bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white"
     >
       {/* Animated background elements - Adjusted for new gradient */}
       <div className="absolute inset-0 z-0">
-        <div className={`absolute w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-60 -left-40`}></div>
-        <div className={`absolute w-[400px] h-[400px] bg-indigo-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} top-[250px] right-0`}></div>
+        <div className={`absolute w-[600px] h-[600px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-60 -left-40`}></div>
+        <div className={`absolute w-[400px] h-[400px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} top-[250px] right-0`}></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">

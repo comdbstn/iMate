@@ -11,7 +11,7 @@ const IncludedFeature = ({ children, delay = 0 }: { children: React.ReactNode; d
       className={`flex items-center gap-3 transition-all duration-500 ${isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-3'}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
+      <CheckCircle className="h-6 w-6 text-rose-400 flex-shrink-0" />
       <span className="text-gray-300">{children}</span>
     </li>
   );
@@ -33,17 +33,17 @@ export const PricingSection = () => {
     <section 
       id="pricing" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-sky-800 to-purple-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-purple-900 via-rose-800 to-indigo-900 text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
-        <div className={`absolute w-[700px] h-[700px] bg-sky-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-52 -left-72`}></div>
+        <div className={`absolute w-[700px] h-[700px] bg-rose-500/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-40' : 'opacity-0'} -top-52 -left-72`}></div>
         <div className={`absolute w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl transition-opacity duration-1000 ease-in-out ${isSectionVisible ? 'animate-pulse opacity-30 delay-500' : 'opacity-0'} bottom-[-250px] right-[-220px]`}></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div 
           ref={badgeRef}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sky-300 mb-6 text-sm transition-all duration-500 ${isBadgeVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-rose-300 mb-6 text-sm transition-all duration-500 ${isBadgeVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
         >
           <Sparkles className="h-4 w-4" />
           <span>맞춤형 AI 에이전트</span>
@@ -53,7 +53,7 @@ export const PricingSection = () => {
           ref={titleRef}
           className={`text-3xl md:text-5xl font-bold text-white mb-6 transition-all duration-500 delay-100 ${isTitleVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-5'}`}
         >
-          합리적인 비용으로 <span className="bg-gradient-to-r from-sky-400 via-teal-300 to-purple-400 text-transparent bg-clip-text">최고의 AI 팀원</span>을 만나보세요
+          합리적인 비용으로 <span className="bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 text-transparent bg-clip-text">최고의 AI 팀원</span>을 만나보세요
         </h2>
         <p 
           ref={descriptionRef}
@@ -67,13 +67,13 @@ export const PricingSection = () => {
           ref={pricingBoxRef}
           className={`bg-slate-800/60 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl shadow-purple-500/10 p-8 md:p-12 max-w-3xl mx-auto transition-all duration-700 delay-300 ${isPricingBoxVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-purple-300 mb-2">맞춤형 AI 에이전트 제작</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-rose-300 mb-2">맞춤형 AI 에이전트 제작</h3>
           <p className="text-4xl md:text-5xl font-extrabold text-white mb-1">
             500,000<span className="text-2xl font-normal text-gray-400">원~</span>
           </p>
           <p className="text-sm text-gray-400 mb-6">(기능 및 연동 범위에 따라 변동)</p>
           
-          <h4 className="text-xl font-semibold text-sky-300 mt-8 mb-1">AI 에이전트 운영 및 유지보수</h4>
+          <h4 className="text-xl font-semibold text-rose-300 mt-8 mb-1">AI 에이전트 운영 및 유지보수</h4>
           <p className="text-3xl font-bold text-white mb-6">
             월 100,000<span className="text-xl font-normal text-gray-400">원~</span>
           </p>
@@ -102,7 +102,7 @@ export const PricingSection = () => {
           >
             <Button 
               onClick={handleContactScroll}
-              className="w-full md:w-auto px-10 py-4 bg-gradient-to-r from-sky-500 via-teal-500 to-purple-500 text-white rounded-full font-semibold text-lg hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-teal-500/30 flex items-center justify-center mx-auto"
+              className="w-full md:w-auto px-10 py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 text-white rounded-full font-semibold text-lg hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-pink-500/30 flex items-center justify-center mx-auto"
               aria-label="맞춤 견적 상담받기"
             >
               맞춤 견적 상담받기
