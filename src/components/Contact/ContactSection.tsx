@@ -1,128 +1,42 @@
-import React, { useState } from 'react';
-import Input from '../common/Input';
-import Select from '../common/Select';
+import React from 'react';
 import Button from '../common/Button';
-
-const FeatureItem = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex items-center text-white">
-    <svg className="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-    </svg>
-    <span>{children}</span>
-  </div>
-);
+// KakaoTalk 아이콘 (lucide-react에 없으므로, 필요시 커스텀 SVG 또는 다른 아이콘 라이브러리 사용)
+// 임시로 메시지 아이콘 사용 또는 텍스트 버튼으로만 구성
+import { MessageSquareText } from 'lucide-react'; // 예시 아이콘
 
 export const ContactSection = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    company: '',
-    character: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  // 폼 관련 상태 및 핸들러 제거
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.id]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setSuccess('');
-    setError('');
-    // 실제 전송 로직은 API 연동 필요. 여기선 1초 후 성공 처리
-    try {
-      await new Promise((res) => setTimeout(res, 1000));
-      setSuccess('문의가 성공적으로 접수되었습니다!');
-      setForm({ name: '', email: '', company: '', character: '' });
-    } catch {
-      setError('오류가 발생했습니다. 다시 시도해 주세요.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_YourChannelId'; // TODO: 실제 카카오 채널 URL로 교체해주세요.
 
   return (
-    <section className="py-20" aria-labelledby="contact-heading">
+    <section id="contact" className="py-20 md:py-32 bg-gradient-to-br from-purple-600 via-indigo-700 to-blue-700" aria-labelledby="contact-heading">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="max-w-4xl mx-auto bg-indigo-600 rounded-3xl overflow-hidden shadow-xl">
-          <div className="grid md:grid-cols-2">
-            <div className="p-10 md:p-12 bg-gradient-to-br from-indigo-600 to-purple-700">
-              <h2 id="contact-heading" className="text-3xl font-bold text-white mb-6">
-                지금 바로 새로운 팀원을 만나보세요
-              </h2>
-              <p className="text-indigo-100 mb-6">
-                14일 무료 체험으로 AI 팀원의 효과를 직접 경험해보세요. 아이메이트는 일하는 방식을 혁신적으로 바꿔줄 것입니다.
-              </p>
-              <div className="space-y-2">
-                <FeatureItem>신용카드 정보 불필요</FeatureItem>
-                <FeatureItem>간편한 설정</FeatureItem>
-                <FeatureItem>언제든지 해지 가능</FeatureItem>
-              </div>
-            </div>
-            
-            <div className="bg-white p-10 md:p-12">
-              <form className="space-y-4" onSubmit={handleSubmit} aria-busy={loading} aria-live="polite">
-                <Input
-                  label="이름"
-                  id="name"
-                  type="text"
-                  placeholder="이름을 입력하세요"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  label="이메일"
-                  id="email"
-                  type="email"
-                  placeholder="회사 이메일을 입력하세요"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  label="회사명"
-                  id="company"
-                  type="text"
-                  placeholder="회사명을 입력하세요"
-                  value={form.company}
-                  onChange={handleChange}
-                />
-                <Select
-                  label="관심 AI 캐릭터"
-                  id="character"
-                  value={form.character}
-                  onChange={handleChange}
-                  options={[
-                    { value: '', label: 'AI 캐릭터 선택' },
-                    { value: 'jiyu', label: '지유 (고객 상담)' },
-                    { value: 'harin', label: '하린 (정보 리서치)' },
-                    { value: 'sua', label: '수아 (일정 관리)' },
-                    { value: 'junho', label: '준호 (마케팅 콘텐츠)' },
-                    { value: 'soyeon', label: '소연 (문서 요약)' },
-                    { value: 'taeo', label: '태오 (업무 자동화)' },
-                    { value: 'custom', label: '맞춤형 AI' },
-                  ]}
-                />
-                <Button
-                  type="submit"
-                  loading={loading}
-                  aria-label="무료 체험 시작하기"
-                  className="w-full"
-                >
-                  무료 체험 시작하기
-                </Button>
-                {success && <p className="text-green-600 text-center" role="status">{success}</p>}
-                {error && <p className="text-red-600 text-center" role="alert">{error}</p>}
-                <p className="text-xs text-gray-500 text-center mt-4">
-                  제출 시 아이메이트의 <a href="#" className="text-indigo-600 hover:underline">서비스 약관</a> 및 <a href="#" className="text-indigo-600 hover:underline">개인정보처리방침</a>에 동의합니다.
-                </p>
-              </form>
-            </div>
-          </div>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
+            지금 바로 새로운 AI 팀원을 만나보세요!
+          </h2>
+          <p className="text-xl text-indigo-100 mb-12 max-w-2xl mx-auto">
+            더 궁금한 점이 있으시거나, 귀사의 비즈니스에 iMate를 어떻게 적용할 수 있을지 논의하고 싶으신가요? <br />
+            아래 버튼을 눌러 카카오톡 채널에서 간편하게 문의하세요.
+          </p>
+          
+          <Button
+            asLink // Button 컴포넌트가 asLink prop을 지원한다고 가정 (<a> 태그로 렌더링)
+            href={KAKAO_CHANNEL_URL}
+            target="_blank" // 새 탭에서 열기
+            rel="noopener noreferrer"
+            className="px-12 py-6 bg-yellow-400 text-gray-900 rounded-full font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-yellow-500/30 text-xl inline-flex items-center gap-3 group"
+            aria-label="카카오톡 채널로 문의하기"
+          >
+            {/* <MessageSquareText className="h-7 w-7 group-hover:animate-bounce" /> */}
+            <svg viewBox="0 0 28 28" className="h-7 w-7" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M14.702 4.284c-5.263 0-9.526 3.558-9.526 7.952 0 2.766 1.706 5.21 4.312 6.698-.215.968-.709 2.305-2.031 3.628-.134.134-.045.368.144.389.33.037.868-.062 1.549-.342.461-.189.896-.445 1.292-.75.068.004.136.006.205.006 1.17 0 2.268-.243 3.258-.687a8.054 8.054 0 002.799.501c5.263 0 9.526-3.558 9.526-7.951s-4.263-7.952-9.526-7.952zm3.02 10.63c-.389.378-.868.566-1.436.566-.547 0-1.026-.188-1.436-.566-.4-.378-.609-.846-.609-1.392 0-.547.209-1.015.609-1.392.39-.388.89-.582 1.436-.582.568 0 1.046.194 1.436.582.4.377.609.845.609 1.392 0 .546-.209 1.014-.609 1.392zm-6.029 0c-.39.378-.878.566-1.446.566-.547 0-1.026-.188-1.426-.566-.4-.378-.609-.846-.609-1.392 0-.547.209-1.015.609-1.392.4-.388.879-.582 1.426-.582.568 0 1.056.194 1.446.582.39.377.609.845.609 1.392 0 .546-.219 1.014-.609 1.392z"/></svg>
+            카카오톡으로 문의하기
+          </Button>
+
+          <p className="mt-8 text-sm text-indigo-200">
+            전문 컨설턴트가 친절하게 상담해 드립니다. (평일 09:00 ~ 18:00)
+          </p>
         </div>
       </div>
     </section>

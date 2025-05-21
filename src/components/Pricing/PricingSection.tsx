@@ -1,157 +1,92 @@
-import React, { useState } from 'react';
-import { Check } from 'lucide-react';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-
-const PricingCard = ({ plan, onSelect }: { plan: any; onSelect: () => void }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  return (
-    <div
-      className={`relative bg-white rounded-2xl overflow-hidden transition-all duration-300 ${
-        plan.popular ? 'shadow-xl ring-2 ring-indigo-600' : 'shadow-md'
-      } ${isHovered ? 'transform scale-105' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {plan.popular && (
-        <div className="absolute top-0 w-full text-center py-2 bg-indigo-600 text-white text-sm font-medium">
-          가장 인기 있는 선택
-        </div>
-      )}
-      <div className={`p-8 ${plan.popular ? 'pt-12' : ''}`}>
-        <h3 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h3>
-        <p className="text-gray-500 mb-5">{plan.title}</p>
-        <div className="mb-6">
-          <span className="text-3xl font-bold text-gray-900">₩{plan.price}</span>
-          {plan.price !== '문의' && <span className="text-gray-500">/월</span>}
-        </div>
-        <ul className="space-y-3 mb-8">
-          {plan.features.map((feature, idx) => (
-            <li key={idx} className="flex items-start">
-              <div className="flex-shrink-0 text-indigo-600 mr-2">
-                <Check className="h-5 w-5" />
-              </div>
-              <span className="text-gray-600">{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <button 
-          onClick={onSelect}
-          className={`w-full py-3 rounded-lg font-medium transition-all duration-300 ${
-            plan.popular
-              ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-              : 'bg-white text-indigo-600 border border-indigo-600 hover:bg-indigo-50'
-          }`}
-          aria-label={`Select ${plan.name} plan`}
-        >
-          {plan.cta}
-        </button>
-      </div>
-    </div>
-  );
-};
+import React from 'react';
+import { Check, HelpCircle, ArrowRight } from 'lucide-react';
+import Button from '../common/Button';
 
 export const PricingSection = () => {
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
-  const [sectionRef, isSectionVisible] = useIntersectionObserver<HTMLElement>({ 
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-  });
-  const [cardsRef, areCardsVisible] = useIntersectionObserver<HTMLDivElement>({ 
-    threshold: 0.3,
-    rootMargin: '0px 0px -150px 0px'
-  });
-  
-  const plans = [
-    {
-      id: 'jiyu',
-      name: '지유',
-      title: '고객 상담 전문가',
-      price: '199,000',
-      features: [
-        '실시간 고객 문의 응대',
-        '24/7 채팅 상담 지원', 
-        '이메일 응대 자동화',
-        '감정 분석 리포트',
-        '기본 CRM 연동'
-      ],
-      cta: '지유와 함께하기',
-      popular: false
-    },
-    {
-      id: 'team',
-      name: '팀 패키지',
-      title: '비즈니스 최적화 팀',
-      price: '499,000',
-      features: [
-        'AI 캐릭터 3명 선택 가능',
-        '모든 캐릭터 기능 이용',
-        '30개 기업 시스템 연동',
-        '맞춤형 워크플로우 설정',
-        '비즈니스 성과 분석 대시보드',
-        '우선 지원 서비스'
-      ],
-      cta: '팀 꾸리기',
-      popular: true
-    },
-    {
-      id: 'custom',
-      name: '맞춤형',
-      title: '기업 맞춤 솔루션',
-      price: '문의',
-      features: [
-        '무제한 AI 캐릭터 사용',
-        '브랜드 캐릭터 맞춤 제작',
-        '모든 기업 시스템 연동',
-        '완전 맞춤형 프로세스 자동화',
-        '전담 기술 지원팀 배정',
-        '엔터프라이즈급 보안'
-      ],
-      cta: '상담 신청하기',
-      popular: false
-    }
-  ];
-
-  const handleSelectPlan = (planId: string) => {
-    setSelectedPlan(planId);
-    // 실제 환경에서는 여기에 결제 또는 상담 페이지로 이동하는 코드를 넣을 수 있습니다
+  const handleContactClick = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section 
-      ref={sectionRef} 
       id="pricing" 
-      className={`py-20 bg-gradient-to-br from-indigo-700 to-purple-700 section-animate from-bottom ${isSectionVisible ? 'appear' : ''}`}
+      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 text-white"
     >
       <div className="container mx-auto px-4 md:px-8">
-        <div className={`text-center max-w-3xl mx-auto mb-16 section-animate fade-in ${isSectionVisible ? 'appear' : ''}`}>
-          <span className="inline-block px-4 py-2 bg-white text-indigo-800 rounded-full font-medium text-sm mb-4">
-            요금제
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <span className="inline-block px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">
+            요금안내
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
-            누구와 함께하고 싶으세요?
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            귀사만을 위한 AI 에이전트, 합리적인 비용으로 만나보세요
           </h2>
-          <p className="text-xl text-white/90">
-            비즈니스 상황에 맞는 AI 팀원을 선택하세요
+          <p className="text-xl text-gray-300 leading-relaxed">
+            iMate는 투명하고 유연한 요금제로 귀사의 성공적인 AI 도입을 지원합니다.
+            초기 구축부터 운영, 유지보수까지 맞춤형 서비스를 제공합니다.
           </p>
         </div>
 
-        <div 
-          ref={cardsRef} 
-          className={`grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto section-animate reveal-grid ${areCardsVisible ? 'appear' : ''}`}
-        >
-          {plans.map((plan) => (
-            <PricingCard 
-              key={plan.id} 
-              plan={plan} 
-              onSelect={() => handleSelectPlan(plan.id)}
-            />
-          ))}
-        </div>
-        
-        <div className={`mt-12 text-center text-white section-animate fade-in ${isSectionVisible ? 'appear delay-500' : ''}`} style={{ transitionDelay: '0.5s' }}>
-          모든 요금제는 14일 무료 체험을 제공합니다. 신용카드 정보 없이 지금 바로 시작해보세요.
+        <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-lg shadow-2xl rounded-xl p-8 md:p-12 border border-white/10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="bg-white/10 p-6 rounded-lg shadow-lg">
+              <h3 className="text-2xl font-semibold text-purple-300 mb-3">맞춤 AI 에이전트 제작</h3>
+              <p className="text-4xl font-bold text-white mb-1">
+                500,000원 <span className="text-lg font-normal text-gray-300">~ (VAT 별도)</span>
+              </p>
+              <p className="text-sm text-gray-400 mb-4">(기능 및 연동 범위에 따라 변동 가능)</p>
+              <p className="text-gray-300 mb-5 leading-relaxed">
+                기존 iMate AI 모델들을 기반으로, 귀사의 특정 요구사항과 업무 환경에 최적화된 맞춤형 AI 에이전트를 제작해 드립니다. 
+                필요한 기능을 선택하고, 원하는 방식으로 튜닝하여 제공받으세요.
+              </p>
+              <ul className="space-y-2 text-gray-300">
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 회사 데이터 학습 및 연동</li>
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 맞춤형 기능 설계 및 개발</li>
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 기존 시스템(CRM, ERP 등) 연동</li>
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 전용 관리자 대시보드 제공</li>
+              </ul>
+            </div>
+
+            <div className="bg-white/10 p-6 rounded-lg shadow-lg">
+              <h3 className="text-2xl font-semibold text-purple-300 mb-3">AI 에이전트 운영 및 유지보수</h3>
+              <p className="text-4xl font-bold text-white mb-1">
+                월 100,000원 <span className="text-lg font-normal text-gray-300">~ (VAT 별도)</span>
+              </p>
+              <p className="text-sm text-gray-400 mb-4">(사용량 및 추가 기능에 따라 변동 가능)</p>
+              <p className="text-gray-300 mb-5 leading-relaxed">
+                AI 에이전트의 안정적인 운영, 지속적인 성능 모니터링 및 업데이트, 기술 지원을 포함하는 월별 비용입니다. 
+                항상 최상의 컨디션으로 AI 팀원이 업무를 수행할 수 있도록 지원합니다.
+              </p>
+              <ul className="space-y-2 text-gray-300">
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 서버 인프라 운영 및 관리</li>
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> AI 모델 성능 최적화 및 업데이트</li>
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 데이터 보안 및 백업</li>
+                <li className="flex items-center"><Check className="h-5 w-5 text-green-400 mr-2" /> 정기 리포트 및 기술 지원</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="text-lg text-gray-200 mb-6">
+              보다 자세한 견적 및 맞춤형 솔루션은 상담을 통해 안내해 드립니다.
+              지금 바로 문의하여 귀사만을 위한 AI 에이전트 도입을 시작하세요!
+            </p>
+            <Button
+              onClick={handleContactClick}
+              className="group px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-full font-semibold hover:opacity-95 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-500/30 text-lg flex items-center justify-center mx-auto"
+              aria-label="맞춤 견적 상담받기"
+            >
+              맞춤 견적 상담받기
+              <ArrowRight className="inline-block ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-white/20 text-center">
+            <p className="text-gray-400 flex items-center justify-center">
+              <HelpCircle className="h-5 w-5 mr-2 text-purple-300" />
+              모든 요금은 VAT 별도이며, 서비스 범위 및 계약 기간에 따라 조정될 수 있습니다. 
+              자세한 내용은 문의 바랍니다.
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -51,8 +51,8 @@ export const ProcessSection = () => {
     {
       id: 'connect',
       icon: <Settings className="h-8 w-8 text-white animate-spin-slow" />,
-      title: '간단한 연동',
-      description: '클릭 몇 번으로 현재 사용 중인 시스템과 연동하세요. 기술 지식이 없어도 쉽게 설정할 수 있습니다.'
+      title: '맞춤 연동',
+      description: '귀사의 시스템에 맞게 맞춤 AI Agent를 제작하여 제공합니다.'
     },
     {
       id: 'use',

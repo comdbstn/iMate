@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MessageCircle, FileText, Calendar, Megaphone, Users, Sparkles, Bot } from 'lucide-react';
 import Button from '../common/Button';
+import ChatPopup from '../common/ChatPopup';
 
 const ProblemCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
   <div className="bg-white/5 backdrop-blur-lg p-6 rounded-xl border border-white/10 transition-all hover:shadow-lg hover:shadow-purple-500/10 hover:-translate-y-1">
@@ -15,8 +16,18 @@ const ProblemCard = ({ icon, title, description }: { icon: React.ReactNode; titl
 );
 
 export const ProblemSection = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const handleOpenChat = () => {
+    setIsChatOpen(true);
+  };
+
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+  };
+
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section id="problem" className="py-32 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl animate-pulse -top-48 -left-24"></div>
@@ -34,10 +45,10 @@ export const ProblemSection = () => {
 
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                <span className="text-white">새로운 AI 동료,</span>
+                <span className="text-white">반복작업에 지치셨나요?</span>
                 <br />
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-transparent bg-clip-text">
-                  지유예요! 👋
+                  사람보다 빠르게, 정확하게 작업해드리겠습니다!
                 </span>
               </h2>
               <p className="text-xl text-gray-400">
@@ -85,6 +96,7 @@ export const ProblemSection = () => {
                 </h3>
                 
                 <Button
+                  onClick={handleOpenChat}
                   className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full font-medium hover:opacity-90 transition-all transform hover:scale-105 duration-200 shadow-lg shadow-purple-500/25"
                   aria-label="지유와 대화하기"
                 >
@@ -98,6 +110,12 @@ export const ProblemSection = () => {
           </div>
         </div>
       </div>
+      <ChatPopup 
+        isOpen={isChatOpen} 
+        onClose={handleCloseChat} 
+        botName="지유 AI"
+        initialMessage="안녕하세요! 지유에게 무엇이든 물어보세요. iMate 서비스에 대해 자세히 알려드릴게요!"
+      />
     </section>
   );
 };
