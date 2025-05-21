@@ -69,8 +69,8 @@ export const ProblemSection = () => {
               />
               <ProblemCard
                 icon={<Calendar className="h-6 w-6 text-purple-400" />}
-                title="일정 관리가 어려우신가요?"
-                description="제가 여러분의 일정을 꼼꼼하게 관리하고 회의록도 작성해드릴게요!"
+                title="반복 작업에 지치셨나요?"
+                description="사람보다 빠르게, 정확하게 작업해드리겠습니다!"
               />
             </div>
           </div>

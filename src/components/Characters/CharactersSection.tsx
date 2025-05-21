@@ -92,11 +92,11 @@ export const CharactersSection = () => {
         <Info className="h-5 w-5" />
       </Button>
 
-      <div className="aspect-[3/2] w-full overflow-hidden bg-gray-100">
+      <div className="aspect-[3/2] w-full overflow-hidden bg-gray-100 flex items-center justify-center">
         <img
           src={character.image || `/images/ai-placeholder.webp`}
           alt={`${character.name} 캐릭터 이미지`}
-          className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+          className="w-full h-full object-contain transition-transform hover:scale-105 duration-300 max-h-[200px] md:max-h-[250px]"
           loading="lazy"
           onError={e => { e.currentTarget.src = '/images/ai-placeholder.webp'; }}
         />
