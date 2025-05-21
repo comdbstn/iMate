@@ -88,10 +88,10 @@ export const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden" itemScope itemType="https://schema.org/FAQPage">
+    <section id="faq" className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-teal-900 to-green-900 text-white relative overflow-hidden" itemScope itemType="https://schema.org/FAQPage">
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-400 -bottom-40 -right-32 opacity-60"></div>
-        <div className="absolute w-[300px] h-[300px] bg-sky-400/10 rounded-full blur-3xl animate-pulse delay-1000 top-20 -left-24 opacity-50"></div>
+        <div className="absolute w-[500px] h-[500px] bg-green-500/10 rounded-full blur-3xl animate-pulse delay-400 -bottom-48 -right-36 opacity-50"></div>
+        <div className="absolute w-[300px] h-[300px] bg-teal-400/10 rounded-full blur-3xl animate-pulse delay-1000 top-28 -left-28 opacity-40"></div>
       </div>
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">

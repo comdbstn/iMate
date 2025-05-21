@@ -27,11 +27,11 @@ export const ProblemSection = () => {
   };
 
   return (
-    <section id="problem" className="py-32 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl animate-pulse -top-48 -left-24"></div>
-        <div className="absolute w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-700 top-96 right-12"></div>
+    <section id="problem" className="py-32 relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900">
+      {/* Animated background elements - Adjusted */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-[550px] h-[550px] bg-indigo-500/10 rounded-full blur-3xl animate-pulse -top-52 -left-32 opacity-50"></div>
+        <div className="absolute w-[350px] h-[350px] bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-700 top-[300px] right-10 opacity-40"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">

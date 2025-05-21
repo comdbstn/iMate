@@ -30,11 +30,11 @@ export const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white">
-      {/* Animated background elements - Optional, can be added for consistency */}
+    <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-sky-900 text-white">
+      {/* Animated background elements - Adjusted */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-3xl animate-pulse -top-48 -left-64 opacity-50"></div>
-        <div className="absolute w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-700 bottom-[-200px] right-[-200px] opacity-40"></div>
+        <div className="absolute w-[700px] h-[700px] bg-sky-500/10 rounded-full blur-3xl animate-pulse -top-52 -left-72 opacity-40"></div>
+        <div className="absolute w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-700 bottom-[-250px] right-[-220px] opacity-30"></div>
       </div>
 
       {/* Content */}

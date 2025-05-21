@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, MessageCircle, PenTool, FileText, Calendar }
 const TabButton = ({ onClick, isActive, children }: { onClick: () => void; isActive: boolean; children: React.ReactNode }) => (
   <button
     onClick={onClick}
-    className={`w-3 h-3 rounded-full transition-colors ${isActive ? 'bg-purple-500' : 'bg-white/20'}`}
+    className={`w-3 h-3 rounded-full transition-colors ${isActive ? 'bg-pink-500' : 'bg-white/20'}`}
     aria-pressed={isActive}
   >
     {children}
@@ -12,31 +12,31 @@ const TabButton = ({ onClick, isActive, children }: { onClick: () => void; isAct
 );
 
 const UseCaseCard = ({ useCase, isActive }: { useCase: any; isActive: boolean }) => (
-  <div className="bg-white/5 backdrop-blur-lg p-8 md:p-12 rounded-2xl border border-white/10 relative overflow-hidden">
+  <div className="bg-white/5 backdrop-blur-lg p-8 md:p-12 rounded-2xl border border-white/10 relative overflow-hidden hover:shadow-xl hover:shadow-pink-500/10">
     <div className="grid md:grid-cols-2 gap-12 items-center">
       <div className="space-y-6">
         <div className="flex items-center gap-4">
           <span className="px-4 py-2 bg-white/10 text-white rounded-full text-sm font-medium">
             {useCase.company}
           </span>
-          <div className={`${useCase.character1.color} w-10 h-10 rounded-full flex items-center justify-center`}>
+          <div className={`${useCase.character1.color} w-10 h-10 rounded-full flex items-center justify-center shadow-md`}>
             {useCase.character1.icon}
           </div>
         </div>
         <h3 className="text-2xl md:text-3xl font-bold text-white">
           {useCase.title}
         </h3>
-        <blockquote className="text-gray-300 text-lg leading-relaxed">
-          "{useCase.testimonial}"
+        <blockquote className="text-gray-300 text-lg leading-relaxed border-l-4 border-pink-500/50 pl-4">
+          \"{useCase.testimonial}\"
         </blockquote>
-        <div className="h-1 w-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"></div>
+        <div className="h-1 w-20 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full"></div>
       </div>
       <div className="relative group">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl transform rotate-1 group-hover:rotate-2 transition-transform"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 rounded-xl transform rotate-1 group-hover:rotate-2 transition-transform opacity-80"></div>
         <img 
           src={useCase.image.replace('.jpeg', '.webp')}
           alt={useCase.title}
-          className="relative rounded-xl w-full h-[400px] object-cover transform -rotate-1 group-hover:rotate-0 transition-transform"
+          className="relative rounded-xl w-full h-[400px] object-cover transform -rotate-1 group-hover:rotate-0 transition-transform shadow-2xl"
           loading="lazy"
         />
       </div>
@@ -85,18 +85,18 @@ export const UseCasesSection = () => {
   };
 
   return (
-    <section className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div>
+    <section className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-slate-900 via-rose-950 to-indigo-900 text-white">
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"></div> */}
       
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl animate-pulse -top-48 -left-24"></div>
-        <div className="absolute w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-700 bottom-0 right-12"></div>
+      {/* Animated background elements - Adjusted for new theme */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-3xl animate-pulse -top-32 -left-52 opacity-60"></div>
+        <div className="absolute w-[450px] h-[450px] bg-orange-400/10 rounded-full blur-3xl animate-pulse delay-600 bottom-[-150px] -right-40 opacity-50"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
-          <span className="inline-block px-4 py-2 bg-purple-500/10 text-purple-400 rounded-full font-medium text-sm mb-4 border border-purple-500/20">
+          <span className="inline-block px-4 py-2 bg-white/10 text-pink-300 rounded-full font-medium text-sm mb-4 border border-white/20">
             성공 사례
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">

@@ -12,18 +12,20 @@ const FeatureCard = ({
   description: string; 
   example?: string; 
 }) => (
-  <div className="bg-white/5 backdrop-blur-lg shadow-xl rounded-xl p-6 transform transition-all hover:scale-105 border border-white/10 hover:shadow-purple-500/20">
-    <div className="flex items-start mb-4">
-      <div className="p-3 bg-purple-500/10 text-purple-400 rounded-full mr-4">{icon}</div>
+  <div className="bg-white/5 backdrop-blur-lg shadow-xl rounded-xl p-6 transform transition-all hover:scale-105 border border-white/10 hover:shadow-purple-500/20 flex flex-col">
+    <div className="flex items-center mb-4">
+      <div className="p-3 bg-purple-500/10 text-purple-400 rounded-full mr-4 flex-shrink-0">{icon}</div>
       <h3 className="text-xl font-semibold text-white">{title}</h3>
     </div>
-    <p className="text-gray-300 mb-3">{description}</p>
-    {example && (
-      <div className="mt-3 pt-3 border-t border-white/10">
-        <p className="text-sm text-purple-300 font-medium mb-1">예시:</p>
-        <p className="text-sm text-gray-300 bg-slate-700/60 p-3 rounded-md">{example}</p>
-      </div>
-    )}
+    <div className="flex-grow">
+      <p className="text-gray-300 mb-3">{description}</p>
+      {example && (
+        <div className="mt-3 pt-3 border-t border-white/10">
+          <p className="text-sm text-purple-300 font-medium mb-1">예시:</p>
+          <p className="text-sm text-gray-300 bg-slate-700/60 p-3 rounded-md">{example}</p>
+        </div>
+      )}
+    </div>
   </div>
 );
 
@@ -31,12 +33,12 @@ export const AiAgentIntroSection = () => {
   return (
     <section 
       id="ai-agent-intro" 
-      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-800 to-pink-900 text-white relative overflow-hidden"
     >
-      {/* Animated background elements - similar to ProblemSection */}
+      {/* Animated background elements - Adjusted */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-3xl animate-pulse -top-32 -left-48 opacity-70"></div>
-        <div className="absolute w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500 bottom-0 -right-32 opacity-60"></div>
+        <div className="absolute w-[650px] h-[650px] bg-purple-500/10 rounded-full blur-3xl animate-pulse -top-40 -left-56 opacity-50"></div>
+        <div className="absolute w-[400px] h-[400px] bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-500 bottom-[-100px] -right-48 opacity-40"></div>
       </div>
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">

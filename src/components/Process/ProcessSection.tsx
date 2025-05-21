@@ -70,11 +70,11 @@ export const ProcessSection = () => {
     <section 
       ref={sectionRef} 
       id="process" 
-      className={`py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden section-animate from-left ${isSectionVisible ? 'appear' : ''}`}
+      className={`py-20 md:py-32 bg-gradient-to-br from-slate-900 via-sky-900 to-cyan-900 text-white relative overflow-hidden section-animate from-left ${isSectionVisible ? 'appear' : ''}`}
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[550px] h-[550px] bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-200 top-10 -right-40 opacity-50"></div>
-        <div className="absolute w-[350px] h-[350px] bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-900 bottom-20 -left-32 opacity-40"></div>
+        <div className="absolute w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-200 top-10 -right-44 opacity-50"></div>
+        <div className="absolute w-[350px] h-[350px] bg-sky-400/10 rounded-full blur-3xl animate-pulse delay-900 bottom-24 -left-36 opacity-40"></div>
       </div>
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className={`text-center max-w-3xl mx-auto mb-16 section-animate scale-in ${isSectionVisible ? 'appear' : ''}`}>

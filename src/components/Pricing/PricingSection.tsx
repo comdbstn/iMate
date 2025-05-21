@@ -10,8 +10,12 @@ export const PricingSection = () => {
   return (
     <section 
       id="pricing" 
-      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 text-white"
+      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 text-white relative overflow-hidden"
     >
+      <div className="absolute inset-0 z-0">
+        <div className="absolute w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-3xl animate-pulse -top-32 -right-48 opacity-60"></div>
+        <div className="absolute w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-500 bottom-[-100px] -left-36 opacity-50"></div>
+      </div>
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <span className="inline-block px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">

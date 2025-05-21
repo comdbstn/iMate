@@ -8,11 +8,11 @@ export const ContactSection = () => {
   return (
     <section 
       id="contact" 
-      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-orange-800 to-red-900 text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-3xl animate-pulse -bottom-32 -left-40 opacity-50"></div>
-        <div className="absolute w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-600 top-0 -right-20 opacity-40"></div>
+        <div className="absolute w-[600px] h-[600px] bg-red-500/10 rounded-full blur-3xl animate-pulse -bottom-36 -left-44 opacity-50"></div>
+        <div className="absolute w-[400px] h-[400px] bg-orange-400/10 rounded-full blur-3xl animate-pulse delay-600 top-[-50px] -right-24 opacity-40"></div>
       </div>
       <div className="container mx-auto px-4 md:px-8 text-center relative z-10">
         <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-purple-300 rounded-full font-medium text-sm mb-4 border border-white/20">

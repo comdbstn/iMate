@@ -119,10 +119,10 @@ export const CharactersSection = () => {
   );
 
   return (
-    <section id="characters" className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 text-white relative overflow-hidden">
+    <section id="characters" className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-pink-900 to-rose-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-300 -top-40 right-0 opacity-60"></div>
-        <div className="absolute w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-800 bottom-10 -left-20 opacity-50"></div>
+        <div className="absolute w-[550px] h-[550px] bg-rose-500/10 rounded-full blur-3xl animate-pulse delay-300 -top-44 -right-10 opacity-50"></div>
+        <div className="absolute w-[450px] h-[450px] bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-800 bottom-[-50px] -left-28 opacity-40"></div>
       </div>
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
