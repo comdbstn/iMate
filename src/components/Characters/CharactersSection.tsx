@@ -38,7 +38,7 @@ export const CharactersSection = () => {
       icon: MessageCircle,
       description: '실시간 채팅 상담, FAQ 자동 응답, 고객 문의 접수 및 분류',
       longDescription: '지유는 고객과의 최접점에서 빛을 발하는 상담 전문가입니다. 실시간 채팅, FAQ 기반 자동 응답은 물론, 고객 문의를 효율적으로 접수하고 분류하여 만족스러운 고객 경험을 선사합니다. CRM 연동으로 고객 히스토리를 즉시 파악하고, 상담 내용을 요약하여 보고서를 자동 생성함으로써 업무 효율을 극대화합니다. 음성 상담(Twilio 연동) 및 감정 분석을 통한 이슈 티켓 자동 생성, 이메일 자동 답변 기능까지 갖추고 있어 쇼핑몰 고객센터, SaaS 고객 지원, 예약 상담 등 다양한 분야에서 활약합니다.',
-      image: '/images/character-jiyu.webp',
+      image: '/images/ai-jiyu.webp',
       baseFunctions: [
         "실시간 채팅 상담 (웹 채팅창, 메신저 연동)",
         "FAQ 기반 자동 응답",
@@ -64,7 +64,7 @@ export const CharactersSection = () => {
       icon: Search,
       description: '웹 검색 기반 주제 리서치, 문서 요약, 경쟁사 뉴스 수집',
       longDescription: '하린은 방대한 정보의 바다에서 핵심만을 찾아내는 유능한 리서처입니다. 웹 검색을 통해 필요한 주제를 심도 있게 리서치하고, PDF나 Word 문서를 업로드하면 내용을 빠르게 요약해줍니다. 기본적인 경쟁사 뉴스 수집 및 정리는 물론, 요약본에 출처 링크를 포함하고, 표나 차트를 활용해 리서치 결과를 시각화하여 가독성을 높입니다. 키워드별 중요도 분석과 보고서 자동 작성 및 이메일 발송 기능은 마케팅팀의 리서치 지원, 시장 조사, 내부 자료 정리 등에서 시간을 크게 절약해줍니다.',
-      image: '/images/character-harin.webp',
+      image: '/images/ai-harin.webp',
       baseFunctions: [
         "웹 검색 기반 주제 리서치",
         "문서 업로드 (PDF, Word) 후 내용 요약",
@@ -89,7 +89,7 @@ export const CharactersSection = () => {
       icon: Calendar,
       description: '캘린더 연동, 일정 예약 및 알림, 회의록 작성 (텍스트 기반)',
       longDescription: '수아는 바쁜 당신의 스케줄을 빈틈없이 관리하고 회의 생산성을 높이는 스마트한 비서입니다. Google Calendar 및 Outlook 캘린더와 연동하여 일정을 손쉽게 예약하고 알림을 발송합니다. 텍스트 기반 회의 요약 및 회의록 작성은 기본이며, Zoom 및 Google Meet 통합 회의 요약 기능으로 화상회의 내용도 놓치지 않습니다. 참가자별 발언 요약, 자동 메모 태깅 후 Notion이나 Slack에 업로드하는 기능, 일정 중복 및 우선순위 최적화 제안 기능은 임원 비서 지원, 팀 미팅 관리, 프로젝트 매니지먼트에 필수적입니다.',
-      image: '/images/character-sua.webp',
+      image: '/images/ai-sua.webp',
       baseFunctions: [
         "Google Calendar·Outlook 캘린더 연동",
         "일정 예약 및 알림 발송",
@@ -114,7 +114,7 @@ export const CharactersSection = () => {
       icon: PenTool,
       description: 'SNS 포스트 문구 작성, 광고 문구 초안 생성, SEO 키워드 추천',
       longDescription: '준호는 당신의 브랜드를 빛낼 매력적인 마케팅 콘텐츠를 만들어내는 크리에이터입니다. 인스타그램, 블로그, 트위터 등 다양한 SNS 채널에 맞는 포스트 문구를 작성하고, Facebook 및 Google Ads 광고 문구 초안을 빠르게 생성합니다. 기본 SEO 최적화 키워드 추천은 물론, A/B 테스트용 광고 버전 자동 생성, CTA(Call To Action) 최적화 추천 기능으로 마케팅 성과를 극대화합니다. 브랜드별 맞춤 스타일 카피 제공과 해시태그 자동 추천 및 게시 예약 기능은 스타트업이나 중소기업 마케팅팀, 콘텐츠 크리에이터에게 강력한 지원군이 될 것입니다.',
-      image: '/images/character-junho.webp',
+      image: '/images/ai-junho.webp',
       baseFunctions: [
         "SNS용 포스트 문구 작성 (인스타그램, 블로그, 트위터 등)",
         "광고 문구 (Facebook, Google Ads 등) 초안 생성",
@@ -139,7 +139,7 @@ export const CharactersSection = () => {
       icon: FileText,
       description: '회의록 작성, 리포트 요약 및 핵심 추출, 계약서 초안 작성',
       longDescription: '소연은 복잡한 문서 업무를 깔끔하게 처리하는 문서 전문가입니다. 텍스트 입력을 통해 회의록을 작성하고, 장문의 리포트에서 핵심 포인트를 정확히 추출하여 요약합니다. 간단한 계약서나 안내문 템플릿을 기반으로 초안을 빠르게 작성할 수 있도록 돕습니다. 문서 자동 포맷팅(항목별 정리, 번호 매기기) 기능으로 가독성을 높이고, 조항별 요약 및 설명 삽입 기능으로 이해를 돕습니다. PDF나 워드 문서를 업로드하면 자동으로 분석하고 요약하며, 요약본을 메일로 자동 발송하는 기능은 팀 회의 기록, 보고서 정리, 계약 초안 작업 등에서 빛을 발합니다.',
-      image: '/images/character-soyeon.webp',
+      image: '/images/ai-soyeon.webp',
       baseFunctions: [
         "회의록 작성 (텍스트 입력 요약)",
         "리포트 요약 및 핵심 포인트 추출",
@@ -164,7 +164,7 @@ export const CharactersSection = () => {
       icon: Zap,
       description: '데이터 수집·정리, 메일·SMS 정기 발송, 간단한 데이터 변환',
       longDescription: '윤구는 귀찮은 반복 업무를 마법처럼 자동화하는 요정입니다. 스프레드시트 자동 업데이트를 통한 데이터 수집 및 정리는 기본, 정기적인 메일이나 SMS 발송도 손쉽게 처리합니다. 데이터 포맷 통일이나 중복 제거 같은 간단한 데이터 변환 작업도 윤구에게 맡기세요. 주간, 월간 정기 보고서를 자동으로 생성하고 배포하며, 슬랙이나 이메일 등으로 알림을 자동화합니다. 외부 API와 연동하여 데이터를 가져오거나 업로드하고, 특정 조건 충족 시 메일을 발송하는 등 조건부 로직 설정도 가능하여 매출 집계, 재고 관리, 정기 리포트, 예약 알림 등 다양한 반복 업무에서 해방될 수 있습니다.',
-      image: '/images/character-yungu.webp',
+      image: '/images/ai-yungu.webp',
       baseFunctions: [
         "데이터 수집·정리 (스프레드시트 자동 업데이트)",
         "메일·SMS 정기 발송",
