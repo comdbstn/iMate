@@ -1,13 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-slate-900 text-white antialiased;
+    @apply bg-brand-dark text-brand-light antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+
+  p {
+    @apply font-sans;
   }
 }
 
+/*
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -87,6 +98,7 @@
 .animation-delay-1000 {
   animation-delay: 1000ms;
 }
+*/
 
 /* Glass effect */
 .glass {
@@ -120,6 +132,7 @@
   transition: transform 0.3s ease;
 }
 
+/*
 .stagger-show > * {
   opacity: 0;
   transform: translateY(20px);
@@ -135,6 +148,7 @@
 .stagger-show > *:nth-child(7) { animation-delay: 0.7s; }
 .stagger-show > *:nth-child(8) { animation-delay: 0.8s; }
 .stagger-show > *:nth-child(9) { animation-delay: 0.9s; }
+*/
 
 /* 섹션 애니메이션 효과 전체 해제 */
 .section-animate {
